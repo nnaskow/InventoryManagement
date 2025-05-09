@@ -16,7 +16,7 @@ namespace InventoryManagement.Services
         {
             _context = new InventoryManagementContext();
         }
-        public void AddProduct(string name, int categoryId, int supplierId, int quantity, decimal price, DateOnly lastUpdated)
+        public void AddProduct(string name, int categoryId, int supplierId, int quantity, decimal price )
         {
             var product = new Product
             {
@@ -25,7 +25,6 @@ namespace InventoryManagement.Services
                 SupplierId = supplierId,
                 Quantity = quantity,
                 Price = price,
-                LastUpdated = lastUpdated
             };
 
             _context.Products.Add(product);

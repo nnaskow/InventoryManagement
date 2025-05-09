@@ -21,8 +21,8 @@ namespace InventoryManagement.Views
 
         public Menu()
         {
-            LoadingAnimation();
-            Thread.Sleep(1000);
+/*            LoadingAnimation();
+            Thread.Sleep(1000);*/
             MenuDesign();
         }
         public static void MenuDesign()
@@ -72,8 +72,22 @@ namespace InventoryManagement.Views
         {
             Console.Clear();
             var productIds = _productService.GetAllProductIds();
+            var categories = _categoryService.GetAllCategories();
+            var suppliers = _supplierService.GetAllSuppliers();
 
-            Console.Clear();
+            int maxLength = Math.Max(categories.Count, suppliers.Count);
+
+            Console.WriteLine("{0,-3} | {1,-25} | {2,-25}", "ID", "Category", "Supplier");
+            Console.WriteLine(new string('-', 60));
+
+            for (int i = 0; i < maxLength; i++)
+            {
+                string categoryName = i < categories.Count ? categories[i].Name : "";
+                string supplierName = i < suppliers.Count ? suppliers[i].Name : "";
+
+                Console.WriteLine("{0,-3} | {1,-25} | {2,-25}", i+1, categoryName, supplierName);
+            }
+
             Console.WriteLine("\n--- Добави продукт ---");
 
             Console.Write("Име на продукта: ");
@@ -91,10 +105,7 @@ namespace InventoryManagement.Views
             Console.Write("Цена: ");
             var price = decimal.Parse(Console.ReadLine());
 
-            Console.Write("Дата на последна актуализация (YYYY-MM-DD): ");
-            var lastUpdated = DateOnly.Parse(Console.ReadLine());
-
-            _productService.AddProduct(name, categoryId, supplierId, quantity, price, lastUpdated);
+            _productService.AddProduct(name, categoryId, supplierId, quantity, price);
 
             Console.WriteLine("Продуктът беше добавен!");
             Console.WriteLine("Връщане към началното меню: [r]");
