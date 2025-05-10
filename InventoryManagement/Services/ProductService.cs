@@ -16,7 +16,7 @@ namespace InventoryManagement.Services
         {
             _context = new InventoryManagementContext();
         }
-        public void AddProduct(string name, int categoryId, int supplierId, int quantity, decimal price )
+        public void AddProduct(string name, int categoryId, int supplierId, int quantity, decimal price,DateOnly LastUpdated)
         {
             var product = new Product
             {
@@ -25,11 +25,14 @@ namespace InventoryManagement.Services
                 SupplierId = supplierId,
                 Quantity = quantity,
                 Price = price,
+                LastUpdated = DateOnly.FromDateTime(DateTime.Now) 
             };
 
             _context.Products.Add(product);
+
             _context.SaveChanges();
         }
+
 
         public List<Product> GetAllProducts()
         {
@@ -62,13 +65,26 @@ namespace InventoryManagement.Services
         public void DeleteProduct(int productId)
         {
             var product = _context.Products.FirstOrDefault(p => p.ProductId == productId);
-
             if (product != null)
-            {
+            {             
+                var transactions = _context.Transactions.Where(t => t.ProductId == productId).ToList();
+                foreach (var transaction in transactions)
+                {
+                    _context.Transactions.Remove(transaction);
+                }
+
                 _context.Products.Remove(product);
+
                 _context.SaveChanges();
+
+                var maxId = _context.Products.Max(p => p.ProductId);
+                _context.Database.ExecuteSqlRaw($"DBCC CHECKIDENT ('products', RESEED, {maxId})");
+
+                Console.WriteLine("Продуктът беше изтрит и ID стойността беше актуализирана!");
             }
         }
+
+
         public List<Product> GetAllProduct()
         {
             return _context.Products.ToList();
@@ -77,6 +93,31 @@ namespace InventoryManagement.Services
         {
             return _context.Products.Select(p => p.ProductId).ToList();
         }
+        public int GetLastInsertedProductId()
+        {
+            return _context.Products.OrderByDescending(p => p.ProductId).FirstOrDefault()?.ProductId ?? 0;
+        }
+        public void UpdateProductQuantity(int productId, int quantityChange)
+        {
+            var product = _context.Products.FirstOrDefault(p => p.ProductId == productId);
+            if (product != null)
+            {
+                if (product.Quantity + quantityChange < 0)
+                {
+                    Console.WriteLine("Не е достатъчно количество на продукта.");
+                    return;
+                }
+
+                product.Quantity += quantityChange;
+
+                _context.SaveChanges();
+            }
+            else
+            {
+                Console.WriteLine("Продуктът не съществува.");
+            }
+        }
+
     }
 
 }
