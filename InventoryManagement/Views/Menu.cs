@@ -9,11 +9,12 @@ namespace InventoryManagement.Views
 {
     public class Menu
     {
-        private static SupplierService _supplierService = new SupplierService();
-        private static ProductService _productService = new ProductService();
-        private static CategoryService _categoryService = new CategoryService();
-        private static TransactionService _transactionService = new TransactionService();
+        private static SupplierService _supplierService;
+        private static ProductService _productService;
+        private static CategoryService _categoryService;
+        private static TransactionService _transactionService;
 
+        static int maxDots = 3;
         string a = "/";
         string b = "\\";
         string c = "__";
@@ -21,9 +22,14 @@ namespace InventoryManagement.Views
 
         public Menu()
         {
-/*            LoadingAnimation();
+            _transactionService = new TransactionService();
+            _categoryService = new CategoryService();
+            _productService = new ProductService();
+            _supplierService = new SupplierService();
+            /* LoadingAnimation();
             Thread.Sleep(1000);*/
             MenuDesign();
+
         }
         public static void MenuDesign()
         {
@@ -65,7 +71,7 @@ namespace InventoryManagement.Views
                         Environment.Exit(0);
                         return;
                     default:
-                        Console.WriteLine("Невалиден избор. Натиснете клавиш за продължение...");
+                        Console.WriteLine("Невалиден избор. Натиснете клавиш за да продължите...");
                         Console.ReadKey();
                         break;
                 }
@@ -80,7 +86,7 @@ namespace InventoryManagement.Views
             var categories = _categoryService.GetAllCategories();
             var suppliers = _supplierService.GetAllSuppliers();
          
-            Console.WriteLine("\n--- Добави продукт ---");
+            Console.WriteLine("\n=== Добави продукт ===");
 
             Console.Write("Име на продукта: ");
             var name = Console.ReadLine();
@@ -91,13 +97,13 @@ namespace InventoryManagement.Views
             }
             else
             {
-                Console.WriteLine("---Списък с категории---");
+                Console.WriteLine("=== Списък с категории ===");
                 foreach (var c in categories)
                 {
                     Console.WriteLine($"ID: {c.CategoryId}, Име: {c.Name}");
                 }
             }
-            Console.WriteLine("\n--- Добави продукт ---");
+            Console.WriteLine("\n=== Добави продукт === ");
             Console.WriteLine($"Име на продукта: {name}");
             Console.Write("Категория (въведете ID): ");
             var categoryId = int.Parse(Console.ReadLine());
@@ -109,13 +115,13 @@ namespace InventoryManagement.Views
             }
             else
             {
-                Console.WriteLine("---Списък с доставчици---");
+                Console.WriteLine("=== Списък с доставчици ===");
                 foreach (var s in suppliers)
                 {
                     Console.WriteLine($"ID: {s.SupplierId}, Име: {s.Name}");
                 }
             }
-            Console.WriteLine("\n--- Добави продукт ---");
+            Console.WriteLine("\n=== Добави продукт ===");
             Console.WriteLine($"Име на продукта: {name}");
             Console.WriteLine($"Категория (въведете ID): {categoryId}");
             Console.Write("Доставчик (въведете ID): ");
@@ -126,15 +132,34 @@ namespace InventoryManagement.Views
 
             Console.Write("Цена: ");
             var price = decimal.Parse(Console.ReadLine());
-           
-            Console.Write("Последна актуализация: ");
-            DateOnly lastUpdated = DateOnly.Parse(Console.ReadLine());
 
-            _productService.AddProduct(name, categoryId, supplierId, quantity, price, lastUpdated);
+            Console.WriteLine("Желаете ли да използвате днешна дата за въвеждане на поле *ПОСЛЕДНА АКТУАЛИЗАЦИЯ*?: *ДА/НЕ*");
+            var inputYN = Console.ReadLine().ToUpper();
+
+            DateOnly lastUpdt;
+
+            if (inputYN == "ДА")
+            {
+                lastUpdt = DateOnly.FromDateTime(DateTime.Now);
+            }
+            else if (inputYN == "НЕ")
+            {
+                Console.Write("Данни на последна актуализация (YYYY-MM-DD): ");
+                lastUpdt = DateOnly.Parse(Console.ReadLine());
+            }
+            else
+            {
+                if (!DateOnly.TryParse(Console.ReadLine(), out lastUpdt))
+                {
+                    ReturnToMenuAnimation("Невалиден формат на датата.", maxDots);
+                    return;
+                }
+            }
+            _productService.AddProduct(name, categoryId, supplierId, quantity, price, lastUpdt);
 
             var productId = _productService.GetLastInsertedProductId();
 
-            _transactionService.AddTransaction(productId, "IN", quantity, DateOnly.FromDateTime(DateTime.Now));
+            _transactionService.AddTransactionForINEntriesOnly(productId, "IN", quantity, DateOnly.FromDateTime(DateTime.Now));
 
             Console.WriteLine("Продуктът беше добавен и транзакцията беше записана!");
             Console.WriteLine("Връщане към началното меню: [r]");
@@ -185,7 +210,7 @@ namespace InventoryManagement.Views
         private static void EditProduct()
         {
             Console.Clear();
-            var products = _productService.GetAllProduct();
+            var products = _productService.GetAllProducts();
             var categories = _categoryService.GetAllCategories();
             var suppliers = _supplierService.GetAllSuppliers();
             if (products.Count == 0)
@@ -497,12 +522,12 @@ namespace InventoryManagement.Views
         }
 
         //Функционалности на менюто с транзакции
+
         private static void AddTransaction()
         {
-            int maxDots = 3;
             Console.Clear();
             Console.WriteLine("Продукти:");
-            var products = _productService.GetAllProduct();
+            var products = _productService.GetAllProducts();
 
             if (products == null || products.Count == 0)
             {
@@ -515,12 +540,12 @@ namespace InventoryManagement.Views
                 Console.WriteLine($"ID: {p.ProductId}, Име: {p.Name}");
             }
 
-            Console.WriteLine("--- Добави транзакция ---");
+            Console.WriteLine("=== Добави транзакция ===");
 
             Console.Write("Продукт (въведете ID): ");
             if (!int.TryParse(Console.ReadLine(), out int productId))
             {
-                ReturnToMenuAnimation("Невалидно ID на продукт.",maxDots);
+                ReturnToMenuAnimation("Невалидно ID на продукт.", maxDots);
                 return;
             }
 
@@ -537,38 +562,55 @@ namespace InventoryManagement.Views
             }
             else
             {
-                ReturnToMenuAnimation("Грешно въведени данни.",maxDots);
+                ReturnToMenuAnimation("Грешно въведени данни.", maxDots);
                 return;
             }
 
             Console.Write("Количество: ");
             if (!int.TryParse(Console.ReadLine(), out int quantity))
             {
-                ReturnToMenuAnimation("Невалидно количество.",maxDots);
+                ReturnToMenuAnimation("Невалидно количество.", maxDots);
                 return;
             }
 
             var product = _productService.GetProductById(productId);
             if (product == null)
             {
-                ReturnToMenuAnimation("Несъществуващ продукт.",maxDots);
+                ReturnToMenuAnimation("Несъществуващ продукт.", maxDots);
                 return;
             }
 
             if (transactionType == "OUT" && quantity > product.Quantity)
             {
-                ReturnToMenuAnimation("Недостатъчно количество",maxDots);
+                ReturnToMenuAnimation("Недостатъчно количество", maxDots);
                 return;
             }
 
-            Console.Write("Дата на транзакцията (YYYY-MM-DD): ");
-            if (!DateOnly.TryParse(Console.ReadLine(), out DateOnly transactionDate))
+            Console.WriteLine("Желаете ли да използвате днешна дата за транзакцията?: *ДА/НЕ*");
+            var inputYN = Console.ReadLine().ToUpper();
+
+            DateOnly transactionDate;
+
+            if (inputYN == "ДА")
             {
-                ReturnToMenuAnimation("Невалиден формат на датата.",maxDots);
-                return;
+                transactionDate = DateOnly.FromDateTime(DateTime.Now);
+            }
+            else if (inputYN == "НЕ")
+            {
+                Console.Write("Дата на транзакцията (YYYY-MM-DD): ");
+                transactionDate = DateOnly.Parse(Console.ReadLine());
+            } 
+            else
+            {
+                if (!DateOnly.TryParse(Console.ReadLine(), out transactionDate))
+                {
+                    ReturnToMenuAnimation("Невалиден формат на датата.", maxDots);
+                    return;
+                }
             }
 
             _transactionService.AddTransaction(productId, transactionType, quantity, transactionDate);
+
 
             Console.WriteLine("Транзакцията беше добавена!");
             Console.WriteLine("Връщане към началното меню: [r]");
@@ -604,19 +646,17 @@ namespace InventoryManagement.Views
                     Console.WriteLine("----IN----");
                     foreach (var transaction in transactions)
                     {
-                        var productName = transaction.Product != null ? transaction.Product.Name : "неизвестен продукт";
                         if (transaction.TransactionType == "IN")
                         {
-                            Console.WriteLine($"ID: {transaction.TransactionId}, Продукт: {productName}, Добавено количество: {transaction.Quantity}, Тип на транзакцията: {transaction.TransactionType}, Дата: {transaction.TransactionDate}");
+                            Console.WriteLine($"ID: {transaction.TransactionId}, Продукт: {transaction.Product.Name}, Добавено количество: {transaction.Quantity}, Тип на транзакцията: {transaction.TransactionType}, Дата: {transaction.TransactionDate}");
                         }                       
                     }
                     Console.WriteLine("----OUT----");
                     foreach (var transaction in transactions)
                     {
-                        var productName = transaction.Product != null ? transaction.Product.Name : "неизвестен продукт";
                         if (transaction.TransactionType == "OUT")
                         {
-                            Console.WriteLine($"ID: {transaction.TransactionId}, Продукт: {productName}, Премахнато количество: {transaction.Quantity}, Тип на транзакцията: {transaction.TransactionType}, Дата: {transaction.TransactionDate}");
+                            Console.WriteLine($"ID: {transaction.TransactionId}, Продукт: {transaction.Product.Name}, Премахнато количество: {transaction.Quantity}, Тип на транзакцията: {transaction.TransactionType}, Дата: {transaction.TransactionDate}");
                         }
                     }
                 }
@@ -634,14 +674,13 @@ namespace InventoryManagement.Views
               {
                 foreach (var transaction in transactions)
                 {
-                    var productName = transaction.Product != null ? transaction.Product.Name : "неизвестен продукт";
                     if(transaction.TransactionType =="IN")
                     {
-                       Console.WriteLine($"ID: {transaction.TransactionId}, Продукт: {productName}, Добавено количество: {transaction.Quantity}, Тип на транзакцията: {transaction.TransactionType}, Дата: {transaction.TransactionDate}");
+                       Console.WriteLine($"ID: {transaction.TransactionId}, Продукт: {transaction.Product.Name}, Добавено количество: {transaction.Quantity}, Тип на транзакцията: {transaction.TransactionType}, Дата: {transaction.TransactionDate}");
                     }
                     else if(transaction.TransactionType == "OUT")
                     {
-                        Console.WriteLine($"ID: {transaction.TransactionId}, Продукт: {productName}, Премахнато количество: {transaction.Quantity}, Тип на транзакцията: {transaction.TransactionType}, Дата: {transaction.TransactionDate}");
+                        Console.WriteLine($"ID: {transaction.TransactionId}, Продукт: {transaction.Product.Name}, Премахнато количество: {transaction.Quantity}, Тип на транзакцията: {transaction.TransactionType}, Дата: {transaction.TransactionDate}");
                     }
                 }
             }
@@ -813,7 +852,7 @@ namespace InventoryManagement.Views
         private static void FullInventoryReport()
         {
             Console.Clear();
-            Console.WriteLine("--- Пълен инвентар ---");
+            Console.WriteLine("=== Пълен инвентар ===");
 
             var products = _productService.GetAllProducts();
             if (products.Count == 0)
