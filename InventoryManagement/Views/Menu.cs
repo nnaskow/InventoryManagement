@@ -1,6 +1,7 @@
 ﻿using InventoryManagement.Models;
 using InventoryManagement.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 using System;
 using System.Runtime.CompilerServices;
 using System.Threading;
@@ -42,8 +43,9 @@ namespace InventoryManagement.Views
                 Console.WriteLine("| [1] Продуктов мениджмънт           |");
                 Console.WriteLine("| [2] Управление на категории        |");
                 Console.WriteLine("| [3] Транзакции                     |");
-                Console.WriteLine("| [4] Доставчици                     |");
-                Console.WriteLine("| [5] Отчети                         |");
+                Console.WriteLine("| [4] Търсене и филтриране           |");
+                Console.WriteLine("| [5] Доставчици                     |");
+                Console.WriteLine("| [6] Отчети                         |");
                 Console.WriteLine("|------------------------------------|");
                 Console.WriteLine("| [x] Изход от системата             |");
                 Console.WriteLine("=======================================");
@@ -62,9 +64,12 @@ namespace InventoryManagement.Views
                         TransactionMenu();
                         break;
                     case "4":
-                        SupplierMenu();
+                        SearchNFilterMenu();
                         break;
                     case "5":
+                        SupplierMenu();
+                        break;
+                    case "6":
                         ReportMenu();
                         break;
                     case "x":
@@ -85,7 +90,7 @@ namespace InventoryManagement.Views
 
             var categories = _categoryService.GetAllCategories();
             var suppliers = _supplierService.GetAllSuppliers();
-         
+
             Console.WriteLine("\n=== Добави продукт ===");
 
             Console.Write("Име на продукта: ");
@@ -107,9 +112,9 @@ namespace InventoryManagement.Views
             Console.WriteLine($"Име на продукта: {name}");
             Console.Write("Категория (въведете ID): ");
             var categoryId = int.Parse(Console.ReadLine());
-
+            
             Console.Clear();
-            if(suppliers.Count == 0)
+            if (suppliers.Count == 0)
             {
                 Console.WriteLine("Няма доставчици.");
             }
@@ -162,18 +167,8 @@ namespace InventoryManagement.Views
             _transactionService.AddTransactionForINEntriesOnly(productId, "IN", quantity, DateOnly.FromDateTime(DateTime.Now));
 
             Console.WriteLine("Продуктът беше добавен и транзакцията беше записана!");
-            Console.WriteLine("Връщане към началното меню: [r]");
-            Console.WriteLine("Връщане към менюто за продукти: [b]");
-            var input = Console.ReadLine();
-            switch (input)
-            {
-                case "r":
-                    MenuDesign();
-                    break;
-                case "b":
-                    ProductMenu();
-                    break;
-            }
+            Console.WriteLine("=============================");
+            ReturnToMenus("Менюто за продукти",ProductMenu);
         }
         private static void ListProducts()
         {
@@ -193,19 +188,8 @@ namespace InventoryManagement.Views
                     Console.WriteLine($"ID: {product.ProductId} | Име: {product.Name} | Категория: {product.Category.Name} | Доставчик: {product.Supplier.Name} | Цена: {product.Price}");
                 }
             }
-            Console.WriteLine("===============================");
-            Console.WriteLine("Връщане към началното меню: [r]");
-            Console.WriteLine("Връщане към менюто за продукти: [b]");
-            var input = Console.ReadLine();
-            switch (input)
-            {
-                case "r":
-                    MenuDesign();
-                    break;
-                case "b":
-                    ProductMenu();
-                    break;
-            }
+            Console.WriteLine("============================");
+            ReturnToMenus("Менюто за продукти", ProductMenu);
         }
         private static void EditProduct()
         {
@@ -213,6 +197,7 @@ namespace InventoryManagement.Views
             var products = _productService.GetAllProducts();
             var categories = _categoryService.GetAllCategories();
             var suppliers = _supplierService.GetAllSuppliers();
+
             if (products.Count == 0)
             {
                 Console.WriteLine("Няма продукти.");
@@ -225,11 +210,17 @@ namespace InventoryManagement.Views
                     Console.WriteLine($"ID: {p.ProductId}, Име: {p.Name}");
                 }
             }
-         
+
             Console.WriteLine("\n--- Редактиране на продукт ---");
 
-            Console.Write("Въведи ID на продукта за редактиране: ");
-            var productId = int.Parse(Console.ReadLine());
+            int productId;
+            while (true)
+            {
+                Console.Write("Въведи ID на продукта за редактиране: ");
+                if (int.TryParse(Console.ReadLine(), out productId))
+                    break;
+                Console.WriteLine("Невалидно ID. Опитайте отново.");
+            }
 
             var product = _productService.GetProductById(productId);
 
@@ -237,7 +228,7 @@ namespace InventoryManagement.Views
             {
                 Console.Write("Новото име на продукта: ");
                 var newName = Console.ReadLine();
-                
+
                 Console.Clear();
                 if (categories.Count == 0)
                 {
@@ -251,12 +242,20 @@ namespace InventoryManagement.Views
                         Console.WriteLine($"ID: {c.CategoryId}, Име: {c.Name}");
                     }
                 }
+
                 Console.WriteLine("\n--- Редактиране на продукт ---");
                 Console.WriteLine($"Въведи ID на продукта за редактиране: {productId}");
                 Console.WriteLine($"Новото име на продукта: {newName}");
 
-                Console.Write("Нова категория (въведете ID): ");
-                var newCategoryId = int.Parse(Console.ReadLine());
+                int newCategoryId;
+                while (true)
+                {
+                    Console.Write("Нова категория (въведете ID): ");
+                    if (int.TryParse(Console.ReadLine(), out newCategoryId) &&
+                        categories.Any(c => c.CategoryId == newCategoryId))
+                        break;
+                    Console.WriteLine("Невалидно ID на категория. Опитайте отново.");
+                }
 
                 Console.Clear();
                 if (suppliers.Count == 0)
@@ -271,21 +270,48 @@ namespace InventoryManagement.Views
                         Console.WriteLine($"ID: {s.SupplierId}, Име: {s.Name}");
                     }
                 }
+
                 Console.WriteLine("\n--- Редактиране на продукт ---");
                 Console.WriteLine($"Въведи ID на продукта за редактиране: {productId}");
                 Console.WriteLine($"Новото име на продукта: {newName}");
                 Console.WriteLine($"Нова категория (въведете ID): {newCategoryId}");
-                Console.Write("Нов доставчик (въведете ID): ");
-                var newSupplierId = int.Parse(Console.ReadLine());
 
-                Console.Write("Ново количество: ");
-                var newQuantity = int.Parse(Console.ReadLine());
+                int newSupplierId;
+                while (true)
+                {
+                    Console.Write("Нов доставчик (въведете ID): ");
+                    if (int.TryParse(Console.ReadLine(), out newSupplierId) &&
+                        suppliers.Any(s => s.SupplierId == newSupplierId))
+                        break;
+                    Console.WriteLine("Невалидно ID на доставчик. Опитайте отново.");
+                }
 
-                Console.Write("Нова цена: ");
-                var newPrice = decimal.Parse(Console.ReadLine());
+                int newQuantity;
+                while (true)
+                {
+                    Console.Write("Ново количество: ");
+                    if (int.TryParse(Console.ReadLine(), out newQuantity) && newQuantity >= 0)
+                        break;
+                    Console.WriteLine("Невалидно количество. Въведете положително цяло число.");
+                }
 
-                Console.Write("Нова дата на последна актуализация (YYYY-MM-DD): ");
-                var newLastUpdated = DateOnly.Parse(Console.ReadLine());
+                decimal newPrice;
+                while (true)
+                {
+                    Console.Write("Нова цена: ");
+                    if (decimal.TryParse(Console.ReadLine(), out newPrice) && newPrice >= 0)
+                        break;
+                    Console.WriteLine("Невалидна цена. Въведете положително десетично число.");
+                }
+
+                DateOnly newLastUpdated;
+                while (true)
+                {
+                    Console.Write("Нова дата на последна актуализация (YYYY-MM-DD): ");
+                    if (DateOnly.TryParse(Console.ReadLine(), out newLastUpdated))
+                        break;
+                    Console.WriteLine("Невалиден формат на дата. Опитайте отново.");
+                }
 
                 _productService.EditProduct(productId, newName, newCategoryId, newSupplierId, newQuantity, newPrice, newLastUpdated);
 
@@ -296,18 +322,8 @@ namespace InventoryManagement.Views
                 Console.WriteLine("Продуктът с такова ID не съществува.");
             }
 
-            Console.WriteLine("Връщане към началното меню: [r]");
-            Console.WriteLine("Връщане към менюто за продукти: [b]");
-            var input = Console.ReadLine();
-            switch (input)
-            {
-                case "r":
-                    MenuDesign();
-                    break;
-                case "b":
-                    ProductMenu();
-                    break;
-            }
+            Console.WriteLine("=============================");
+            ReturnToMenus("Менюто за продукти", ProductMenu);
         }
         private static void DeleteProduct()
         {
@@ -333,19 +349,8 @@ namespace InventoryManagement.Views
 
             _productService.DeleteProduct(productId);
 
-            Console.WriteLine("Продуктът беше изтрит!");
-            Console.WriteLine("Връщане към началното меню: [r]");
-            Console.WriteLine("Връщане към менюто за продукти: [b]");
-            var input = Console.ReadLine();
-            switch (input)
-            {
-                case "r":
-                    MenuDesign();
-                    break;
-                case "b":
-                    ProductMenu();
-                    break;
-            }
+            Console.WriteLine("=============================");
+            ReturnToMenus("Менюто за продукти", ProductMenu);
         }
 
         //Функционалности на менюто с категории
@@ -360,21 +365,8 @@ namespace InventoryManagement.Views
             _categoryService.AddCategory(name);
 
             Console.WriteLine("\nКатегорията беше добавена успешно!");
-            Console.WriteLine("Връщане към началното меню: [r]");
-            Console.WriteLine("Връщане към менюто за категории: [b]");
-            var input = Console.ReadLine();
-            switch (input)
-            {
-                case "r":
-                    MenuDesign();
-                    break;
-                case "b":
-                    CategoryMenu();
-                    break;
-                default:
-                    MenuDesign();
-                    break;
-            }
+            Console.WriteLine("=============================");
+            ReturnToMenus("Менюто за Категории", CategoryMenu);
         }
         private static void ListCategories()
         {
@@ -394,22 +386,8 @@ namespace InventoryManagement.Views
                     Console.WriteLine($"ID: {category.CategoryId}, Име: {category.Name}");
                 }
             }
-
-            Console.WriteLine("\nВръщане към началното меню: [r]");
-            Console.WriteLine("Връщане към менюто за категории: [b]");
-            var input = Console.ReadLine();
-            switch (input)
-            {
-                case "r":
-                    MenuDesign();
-                    break;
-                case "b":
-                    CategoryMenu();
-                    break;
-                default:
-                    MenuDesign();
-                    break;
-            }
+            Console.WriteLine("=============================");
+            ReturnToMenus("Менюто за Категории", CategoryMenu);
         }
         private static void EditCategory()
         {
@@ -451,21 +429,8 @@ namespace InventoryManagement.Views
             _categoryService.EditCategory(id, newName);
 
             Console.WriteLine("\nКатегорията беше редактирана успешно!");
-            Console.WriteLine("Връщане към началното меню: [r]");
-            Console.WriteLine("Връщане към менюто за категории: [b]");
-            var input = Console.ReadLine();
-            switch (input)
-            {
-                case "r":
-                    MenuDesign();
-                    break;
-                case "b":
-                    CategoryMenu();
-                    break;
-                default:
-                    MenuDesign();
-                    break;
-            }
+            Console.WriteLine("=============================");
+            ReturnToMenus("Менюто за Категории", CategoryMenu);
         }
         private static void DeleteCategory()
         {
@@ -504,21 +469,8 @@ namespace InventoryManagement.Views
             _categoryService.DeleteCategory(id);
 
             Console.WriteLine("\nКатегорията беше изтрита успешно!");
-            Console.WriteLine("Връщане към началното меню: [r]");
-            Console.WriteLine("Връщане към менюто за категории: [b]");
-            var input = Console.ReadLine();
-            switch (input)
-            {
-                case "r":
-                    MenuDesign();
-                    break;
-                case "b":
-                    CategoryMenu();
-                    break;
-                default:
-                    MenuDesign();
-                    break;
-            }
+            Console.WriteLine("=============================");
+            ReturnToMenus("Менюто за Категории", CategoryMenu);
         }
 
         //Функционалности на менюто с транзакции
@@ -613,37 +565,27 @@ namespace InventoryManagement.Views
 
 
             Console.WriteLine("Транзакцията беше добавена!");
-            Console.WriteLine("Връщане към началното меню: [r]");
-            Console.WriteLine("Връщане към менюто за транзакции: [b]");
-            var input = Console.ReadLine();
-            switch (input)
-            {
-                case "r":
-                    MenuDesign();
-                    break;
-                case "b":
-                    TransactionMenu();
-                    break;
-            }
+            Console.WriteLine("======================");
+            ReturnToMenus("Менюто за транзакции", TransactionMenu);
         }
         private static void ViewTransactions()
         {
             var transactions = _transactionService.GetAllTransactions();
 
             Console.Clear();
-            Console.WriteLine("Желате ли да разпределите транзакциите в две различни таблици ( IN, OUT )?: *ДА/НЕ*");
+            Console.WriteLine("Желате ли да разпределите транзакциите в две различни таблици ( ВХОДЯЩИ, ИЗХОДЯЩИ )?: *ДА/НЕ*");
             var inp = Console.ReadLine().ToUpper();
             if(inp =="ДА")
             {
                 Console.Clear();
-                Console.WriteLine("--- Преглед на транзакции ---");
+                Console.WriteLine("=== Преглед на транзакции ===");
                 if (transactions.Count == 0)
                 {
                     Console.WriteLine("Няма транзакции.");
                 }
                 else
                 {
-                    Console.WriteLine("----IN----");
+                    Console.WriteLine("<<< IN >>>");
                     foreach (var transaction in transactions)
                     {
                         if (transaction.TransactionType == "IN")
@@ -651,7 +593,7 @@ namespace InventoryManagement.Views
                             Console.WriteLine($"ID: {transaction.TransactionId}, Продукт: {transaction.Product.Name}, Добавено количество: {transaction.Quantity}, Тип на транзакцията: {transaction.TransactionType}, Дата: {transaction.TransactionDate}");
                         }                       
                     }
-                    Console.WriteLine("----OUT----");
+                    Console.WriteLine("<<< OUT >>>");
                     foreach (var transaction in transactions)
                     {
                         if (transaction.TransactionType == "OUT")
@@ -664,7 +606,7 @@ namespace InventoryManagement.Views
             else if(inp =="НЕ")
             {
                 Console.Clear();
-              Console.WriteLine("--- Преглед на транзакции ---");
+              Console.WriteLine("=== Преглед на транзакции ===");
                      
               if (transactions.Count == 0)
               {
@@ -685,26 +627,115 @@ namespace InventoryManagement.Views
                 }
             }
             }
+            Console.WriteLine("========================");
+            ReturnToMenus("Менюто за транзакции", TransactionMenu);
+        }
+        
+        //Функционалности на менюто с филтриране
+        private static void FilterByCategory()
+        {
+            var categories = _categoryService.GetAllCategories();
+            var products = _productService.GetAllProducts();
 
-            Console.WriteLine("Връщане към началното меню: [r]");
-            Console.WriteLine("Връщане към менюто за транзакции: [b]");
-            var input = Console.ReadLine();
-            switch (input)
+            Console.Clear();
+
+            if (categories.Count == 0)
             {
-                case "r":
-                    MenuDesign();
-                    break;
-                case "b":
-                    TransactionMenu();
-                    break;
+                Console.WriteLine("Няма налични категории.");
             }
+            else
+            {
+                Console.WriteLine("=== Категории ===");
+                foreach (var c in categories)
+                {
+                    Console.WriteLine($"ID: {c.CategoryId} Име: {c.Name}");
+                }
+
+                Console.WriteLine("==== Филтриране на продукти по категория ====");
+                Console.Write("Въведете ID на категория, по която искате да филтрирате: ");
+                var input = Console.ReadLine();
+
+                if (int.TryParse(input, out int categoryId))
+                {
+                    var filteredProducts = products
+                        .Where(p => p.CategoryId == categoryId)
+                        .ToList();
+
+                    if (filteredProducts.Count == 0)
+                    {
+                        Console.WriteLine("Няма намерени продукти за тази категория.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("=== Продукти в избраната категория ===");
+                        foreach (var product in filteredProducts)
+                        {
+                            Console.WriteLine($"ID: {product.ProductId} | Име: {product.Name} | Цена: {product.Price} лв | Количество: {product.Quantity}");
+                        }
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Невалиден вход. Моля, въведете правилно ID.");
+                }
+            }
+            Console.WriteLine("==================");
+            ReturnToMenus("Менюто за търсене и филтриране", SearchNFilterMenu);
+
+        }
+        private static void FilterBySuppliers()
+        {
+            var suppliers = _supplierService.GetAllSuppliers();
+            var products = _productService.GetAllProducts();
+            Console.Clear();
+            if (suppliers.Count == 0)
+            {
+                Console.WriteLine("Няма доставичици");
+            }
+            else
+            {
+                Console.WriteLine("=== Доставчици ===");
+                foreach (var s in suppliers)
+                {
+                    Console.WriteLine($"ID: {s.SupplierId} | Име: {s.Name} | Контактно лице: {s.ContactName} => {s.Email} | {s.Phone}");
+                }
+                Console.WriteLine("==== Филтриране на продукти по доставчик ====");
+                Console.Write("Въведете ID на доставчик, по който искате да филтрирате: ");
+                var input = Console.ReadLine();
+
+                if (int.TryParse(input, out int supplierId))
+                {
+                    var filteredProducts = products
+                        .Where(p => p.SupplierId == supplierId)
+                        .ToList();
+
+                    if (filteredProducts.Count == 0)
+                    {
+                        Console.WriteLine("Няма намерени продукти от този доставчик.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("=== Продукти от избрания доставчик ===");
+                        foreach (var product in filteredProducts)
+                        {
+                            Console.WriteLine($"ID: {product.ProductId} | Име: {product.Name} | Цена: {product.Price}лв | Количество: {product.Quantity}");
+                        }
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Невалиден вход. Моля, въведете правилно ID.");
+                }
+            }
+            Console.WriteLine("==================");
+            ReturnToMenus("Менюто за търсене и филтриране", SearchNFilterMenu);
         }
 
         //Функционалности на менюто с доставчици
         private static void AddSupplier()
         {
             Console.Clear();
-            Console.WriteLine("--- Добави доставчик ---");
+            Console.WriteLine("=== Добави доставчик ===");
             Console.Write("Име: ");
             var name = Console.ReadLine();
             Console.Write("Контактно лице: ");
@@ -716,37 +747,18 @@ namespace InventoryManagement.Views
 
             _supplierService.AddSupplier(name, contactName, phone, email);
             Console.WriteLine("Доставчикът беше добавен!");
-            Console.WriteLine("Връщане към началното меню: [r]");
-            Console.WriteLine("Връщане към менюто за доставчици: [b]");
-            var input = Console.ReadLine();
-            switch(input)
-            {
-                case "r":
-                    MenuDesign();
-                    break;
-                case "b":
-                    SupplierMenu();
-                    break;
-            }
+            Console.WriteLine("===========================");
+            ReturnToMenus("Менюто за доставчици", SupplierMenu);
         }
 
         private static void ViewSuppliers()
         {
             Console.Clear();
-            Console.WriteLine("--- Списък с доставчици ---");
+            Console.WriteLine("=== Списък с доставчици ===");
             _supplierService.ListSuppliers();
-            Console.WriteLine("Връщане към началното меню: [r]");
-            Console.WriteLine("Връщане към менюто за доставчици: [b]");
-            var input = Console.ReadLine();
-            switch (input)
-            {
-                case "r":
-                    MenuDesign();
-                    break;
-                case "b":
-                    SupplierMenu();
-                    break;
-            }
+            Console.WriteLine("===========================");
+            ReturnToMenus("Менюто за доставчици", SupplierMenu);
+
         }
 
         private static void EditSupplier()
@@ -760,7 +772,7 @@ namespace InventoryManagement.Views
             }
             else
             {
-                Console.WriteLine("---Списък с доставчици---");
+                Console.WriteLine("=== Списък с доставчици ===");
                 foreach (var supplier in suppliers)
                 {
                     Console.WriteLine($"ID: {supplier.SupplierId}, Име: {supplier.Name}");
@@ -793,18 +805,9 @@ namespace InventoryManagement.Views
             {
                 Console.WriteLine("Невалидно ID.");
             }
-            Console.WriteLine("Връщане към началното меню: [r]");
-            Console.WriteLine("Връщане към менюто за доставчици: [b]");
-            var input = Console.ReadLine();
-            switch (input)
-            {
-                case "r":
-                    MenuDesign();
-                    break;
-                case "b":
-                    SupplierMenu();
-                    break;
-            }
+            Console.WriteLine("==========================");
+            ReturnToMenus("Менюто за доставчици", SupplierMenu);
+
         }
 
         private static void DeleteSupplier()
@@ -818,7 +821,7 @@ namespace InventoryManagement.Views
             }
             else
             {
-                Console.WriteLine("---Списък с доставчици---");
+                Console.WriteLine("=== Списък с доставчици ===");
                 foreach (var supplier in suppliers)
                 {
                     Console.WriteLine($"ID: {supplier.SupplierId}, Име: {supplier.Name}");
@@ -834,18 +837,9 @@ namespace InventoryManagement.Views
             {
                 Console.WriteLine("Невалидно ID.");
             }
-            Console.WriteLine("Връщане към началното меню: [r]");
-            Console.WriteLine("Връщане към менюто за доставчици: [b]");
-            var input = Console.ReadLine();
-            switch (input)
-            {
-                case "r":
-                    MenuDesign();
-                    break;
-                case "b":
-                    SupplierMenu();
-                    break;
-            }
+            Console.WriteLine("=============================");
+            ReturnToMenus("Менюто за доставчици", SupplierMenu);
+
         }
 
         //Функционалности на менюто с отчети
@@ -866,34 +860,24 @@ namespace InventoryManagement.Views
                     Console.WriteLine($"ID: {product.ProductId}, Име: {product.Name}, Категория: {product.Category.Name}, Цена: {product.Price}, Наличност: {product.Quantity}");
                 }
             }
+            Console.WriteLine("======================");
+            ReturnToMenus("Менюто за отчети", ReportMenu);
 
-            Console.WriteLine("Връщане към началното меню: [r]");
-            Console.WriteLine("Връщане към менюто за отчети: [b]");
-            var input = Console.ReadLine();
-
-            if (input == "r")
-            {
-                MenuDesign();
-            }
-            else if (input == "b")
-            {
-                ReportMenu();
-            }
-            else
-            {
-                MenuDesign();
-            }
         }
 
         private static void CategoryReport()
         {
             Console.Clear();
-            Console.WriteLine("--- Отчет по категория ---");
             var allProducts = _productService.GetAllProducts();
-            var allCatIds = allProducts.Select(p => p.CategoryId).Distinct().ToList();
+            var categories = _categoryService.GetAllCategories();
 
+            Console.WriteLine("===========================");
+            foreach (var c in categories)
+            {
+                Console.WriteLine($"ID: {c.CategoryId} Име: {c.Name}");
+            }
+            Console.WriteLine("=== Отчет по категория ====");
             Console.Write("Въведете ID на категорията: ");
-            Console.WriteLine("*Използвани ID-та: " + string.Join(", ", allCatIds));
             var categoryId = int.Parse(Console.ReadLine());
 
             var products = _productService.GetAllProducts().Where(p => p.CategoryId == categoryId).ToList();
@@ -910,28 +894,15 @@ namespace InventoryManagement.Views
                 }
             }
 
-            Console.WriteLine("Връщане към началното меню: [r]");
-            Console.WriteLine("Връщане към менюто за отчети: [b]");
-            var input = Console.ReadLine();
-
-            if (input == "r")
-            {
-                MenuDesign();
-            }
-            else if (input == "b")
-            {
-                ReportMenu();
-            }
-            else
-            {
-                MenuDesign();
-            }
+            Console.WriteLine("======================");
+            ReturnToMenus("Менюто за отчети", ReportMenu);
         }
 
         private static void LowStockReport()
+
         {
             Console.Clear();
-            Console.WriteLine("--- Ниски наличности (<5) ---");
+            Console.WriteLine("=== Ниски наличности (<5) ===");
 
             var lowStockProducts = _productService.GetAllProducts().Where(p => p.Quantity < 5).ToList();
 
@@ -943,26 +914,11 @@ namespace InventoryManagement.Views
             {
                 foreach (var product in lowStockProducts)
                 {
-                    Console.WriteLine($"ID: {product.ProductId}, Име: {product.Name}, Категория: {product.Category.Name}, Цена: {product.Price}, Наличност: {product.Quantity}");
+                    Console.WriteLine($"ID: {product.ProductId}, Име: {product.Name}, Категория: {product.Category.Name}, Цена: {product.Price}, Наличност: {product.Quantity}, Доставчик: {product.Supplier.Name}, Контактно лице: {product.Supplier.ContactName}");
                 }
             }
-
-            Console.WriteLine("Връщане към началното меню: [r]");
-            Console.WriteLine("Връщане към менюто за отчети: [b]");
-            var input = Console.ReadLine();
-
-            if (input == "r")
-            {
-                MenuDesign();
-            }
-            else if (input == "b")
-            {
-                ReportMenu();
-            }
-            else
-            {
-                MenuDesign();
-            }
+            Console.WriteLine("======================");
+            ReturnToMenus("Менюто за отчети", ReportMenu);
         }
 
         //Менюта
@@ -972,7 +928,7 @@ namespace InventoryManagement.Views
             {
                 Console.Clear();
                 Console.WriteLine("=====================================");
-                Console.WriteLine("   --- Управление на продукти ---    ");
+                Console.WriteLine("|  --- Управление на продукти ---   |");
                 Console.WriteLine("=====================================");
                 Console.WriteLine("| [1] Добави продукт                |");
                 Console.WriteLine("| [2] Прегледай всички продукти     |");
@@ -1001,7 +957,7 @@ namespace InventoryManagement.Views
                     case "r":
                         return;
                     default:
-                        Console.WriteLine("Невалиден избор. Натиснете клавиш за продължение...");
+                        Console.WriteLine("Невалиден избор. Натиснете произволен клавиш, за да продължите...");
                         Console.ReadKey();
                         break;
                 }
@@ -1014,7 +970,7 @@ namespace InventoryManagement.Views
             {
                 Console.Clear();
                 Console.WriteLine("=====================================");
-                Console.WriteLine("  --- Управление на категории ---    ");
+                Console.WriteLine("| --- Управление на категории ---   |");
                 Console.WriteLine("=====================================");
                 Console.WriteLine("| [1] Добави категория              |");
                 Console.WriteLine("| [2] Прегледай всички категории    |");
@@ -1043,7 +999,7 @@ namespace InventoryManagement.Views
                     case "r":
                         return;
                     default:
-                        Console.WriteLine("Невалиден избор. Натиснете клавиш за продължение...");
+                        Console.WriteLine("Невалиден избор. Натиснете произволен клавиш, за да продължите...");
                         Console.ReadKey();
                         break;
                 }
@@ -1056,7 +1012,7 @@ namespace InventoryManagement.Views
             {
                 Console.Clear();
                 Console.WriteLine("===========================================");
-                Console.WriteLine("      --- Управление на доставчици ---     ");
+                Console.WriteLine("|     --- Управление на доставчици ---    |");
                 Console.WriteLine("===========================================");
                 Console.WriteLine("| [1] Добави нов доставчик                |");
                 Console.WriteLine("| [2] Прегледай всички доставчици         |");
@@ -1085,18 +1041,51 @@ namespace InventoryManagement.Views
                     case "r":
                         return;
                     default:
-                        Console.WriteLine("Невалиден избор. Натиснете клавиш за продължение...");
+                        Console.WriteLine("Невалиден избор. Натиснете произволен клавиш, за да продължите...");
                         Console.ReadKey();
                         break;
                 }
             }
 
         }
+        private static void SearchNFilterMenu()
+        {
+            while (true)
+            {
+                Console.Clear();
+                Console.WriteLine("===========================================");
+                Console.WriteLine("|      --- Търсене и филтриране ---       |");
+                Console.WriteLine("|-----------------------------------------|");
+                Console.WriteLine("| [1] Филтриране по категория             |");
+                Console.WriteLine("| [2] Филтриране по доставчици            |");
+                Console.WriteLine("|-----------------------------------------|");
+                Console.WriteLine("| [r] Назад                               |");
+                Console.WriteLine("===========================================");
+
+                Console.Write("Вашият избор: ");
+                var input = Console.ReadLine();
+                switch (input)
+                {
+                    case "1":
+                        FilterByCategory();
+                        break;
+                    case "2":
+                        FilterBySuppliers();
+                        break;
+                    case "r":
+                        return;
+                    default:
+                        Console.WriteLine("Невалиден избор. Натиснете произволен клавиш, за да продължите...");
+                        Console.ReadKey();
+                        break;
+                }
+            }            
+        }
         private static void TransactionMenu()
         {
             Console.Clear();
             Console.WriteLine("===========================================");
-            Console.WriteLine("            --- Транзакции ---             ");
+            Console.WriteLine("|           --- Транзакции ---            |");
             Console.WriteLine("===========================================");
             Console.WriteLine("| [1] Добави нова транзакция              |");
             Console.WriteLine("| [2] Преглед на всички транзакции        |"); 
@@ -1118,7 +1107,7 @@ namespace InventoryManagement.Views
                     MenuDesign();
                     break;
                 default:
-                    Console.WriteLine("Невалиден избор.");
+                    Console.WriteLine("Невалиден избор. Натиснете произволен клавиш, за да продължите...");
                     Console.ReadKey();
                     break;
             }
@@ -1129,7 +1118,7 @@ namespace InventoryManagement.Views
             {
                 Console.Clear();
                 Console.WriteLine("===========================================");
-                Console.WriteLine("        --- Генериране на отчети ---       ");
+                Console.WriteLine("|       --- Генериране на отчети ---      |");
                 Console.WriteLine("===========================================");
                 Console.WriteLine("| [1] Пълен инвентар                      |");
                 Console.WriteLine("| [2] Отчет по категория                  |");
@@ -1153,7 +1142,7 @@ namespace InventoryManagement.Views
                     case "r":
                         return;
                     default:
-                        Console.WriteLine("Невалиден избор.");
+                        Console.WriteLine("Невалиден избор. Натиснете произволен клавиш, за да продължите...");
                         Console.ReadKey();
                         break;
                 }
@@ -1214,6 +1203,23 @@ namespace InventoryManagement.Views
         public static string DotsAnimation(int count)
         {
             return new string('.', count);
+        }
+
+        //Връщане към менюта
+        private static void ReturnToMenus(string txt,Action backMenu)
+        {
+            Console.WriteLine("Връщане към началното меню: [r]");
+            Console.WriteLine($"Връщане към {txt.ToLower()}: [b]");
+            var input = Console.ReadLine().ToLower();
+            switch (input)
+            {
+                case "r":
+                    MenuDesign();
+                    break;
+                case "b":
+                    backMenu();
+                    break;
+            }
         }
     }
 }
