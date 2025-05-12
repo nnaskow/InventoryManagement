@@ -26,7 +26,7 @@ public partial class InventoryManagementContext : DbContext
     public virtual DbSet<Transaction> Transactions { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlServer("Data Source=(LocalDB)\\MSSQLLocalDB;Initial Catalog=InventoryManagement;Integrated Security=True;TrustServerCertificate = True");
+        => optionsBuilder.UseSqlServer("Data Source=K114\\SQLEXPRESS;Initial Catalog=InventoryManagement;Integrated Security=True;TrustServerCertificate = True");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

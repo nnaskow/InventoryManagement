@@ -1,9 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35828.75 d17.13
+VisualStudioVersion = 17.13.35828.75
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryManagement", "InventoryManagement\InventoryManagement.csproj", "{0AE4DF83-E98E-404E-9124-FC9DFDD2790F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp", "InventoryManagement\ConsoleApp.csproj", "{0AE4DF83-E98E-404E-9124-FC9DFDD2790F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormsApp", "FormsApp\FormsApp.csproj", "{19EDA33E-C0B9-493B-B5E6-70A478867129}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Views", "Views", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +19,17 @@ Global
 		{0AE4DF83-E98E-404E-9124-FC9DFDD2790F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0AE4DF83-E98E-404E-9124-FC9DFDD2790F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0AE4DF83-E98E-404E-9124-FC9DFDD2790F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19EDA33E-C0B9-493B-B5E6-70A478867129}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19EDA33E-C0B9-493B-B5E6-70A478867129}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19EDA33E-C0B9-493B-B5E6-70A478867129}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19EDA33E-C0B9-493B-B5E6-70A478867129}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0AE4DF83-E98E-404E-9124-FC9DFDD2790F} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{19EDA33E-C0B9-493B-B5E6-70A478867129} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9F79B8B1-AACE-4810-89FD-1E20B22C387F}

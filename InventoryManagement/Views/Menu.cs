@@ -27,8 +27,8 @@ namespace InventoryManagement.Views
             _categoryService = new CategoryService();
             _productService = new ProductService();
             _supplierService = new SupplierService();
-            /* LoadingAnimation();
-            Thread.Sleep(1000);*/
+            LoadingAnimation();
+            Thread.Sleep(1000);
             MenuDesign();
 
         }
