@@ -97,7 +97,25 @@ namespace InventoryManagement.Services
                 return context.Products.OrderByDescending(p => p.ProductId).FirstOrDefault()?.ProductId ?? 0;
             }
         }
-       
+        public int GetTotalProductCount()
+        {
+            using (var context = new InventoryManagementContext())
+            {
+                return context.Products.Count();
+            }
+        }
+        public List<Product> GetLowStockProducts(int num)
+        {
+            using (var context = new InventoryManagementContext())
+            {
+                return context.Products
+                    .Where(p => p.Quantity < num)
+                    .Include(p => p.Category)
+                    .Include(p => p.Supplier)
+                    .ToList();
+            }
+        }
+
     }
 
 }

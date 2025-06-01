@@ -84,5 +84,17 @@ namespace InventoryManagement.Services
                 return _context.Transactions.FirstOrDefault(t => t.TransactionId == transactionId);
             }
         }
+        public List<Transaction> GetLastTransactions(int count)
+        {
+            using (var context = new InventoryManagementContext())
+            {
+                return context.Transactions
+                    .Include(t => t.Product)
+                    .OrderByDescending(t => t.TransactionDate)
+                    .Take(count)
+                    .ToList();
+            }
+        }
+
     }
 }
