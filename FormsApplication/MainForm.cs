@@ -21,6 +21,8 @@ namespace FormsApplication
 
         TransactionService transactionService = new TransactionService();
         ProductService productService = new ProductService();
+        CategoryService categoryService = new CategoryService();
+        SupplierService supplierService = new SupplierService();
         public MainForm(string username)
         {
             InitializeComponent();
@@ -38,7 +40,7 @@ namespace FormsApplication
                 sb.AppendLine($"• {p.Name} - {p.Quantity} бр.");
             }
 
-          //  txtlistLabel.Text = sb.ToString();
+            txtBoxShowList.Text = sb.ToString();
             productsBar.Value = productService.GetTotalProductCount();
             welcomeTxt.Text = $"Добре дошли, {_username}!";
             timeLabel.Visible = false;
@@ -82,14 +84,108 @@ namespace FormsApplication
         {
             if (tabControl1.SelectedTab == tabPage1)
             {
-                //txtlistLabel.Text = "Products selected";
+                txtBoxShowList.Text = "Products selected";
 
             }
             else if (tabControl1.SelectedTab == tabPage2)
             {
-           // txtlistLabel.Text = "Categories selected";
-
+                txtBoxShowList.Text = "Categories selected";
             }
+            else if (tabControl1.SelectedTab == tabPage4)
+            {
+                txtBoxShowList.Text = "Filters selected";
+            }
+            else if (tabControl1.SelectedTab == tabPage5)
+            {
+                txtBoxShowList.Text = "Suppliers selected";
+            }
+            else if (tabControl1.SelectedTab == tabPage6)
+            {
+                txtBoxShowList.Text = "Reports selected";
+            }
+
+        }
+
+
+
+        private void SupplierComboBox_MouseClick(object sender, MouseEventArgs e)
+        {
+            PrintAllSuppliers();
+        }
+        private void categoryComboBox_Click(object sender, EventArgs e)
+        {
+            PrintAllCategories();
+        }
+
+
+        private void newCatEditPr_MouseClick(object sender, MouseEventArgs e)
+        {
+            PrintAllCategories();
+        }
+
+        private void prIDEditProd_MouseClick(object sender, MouseEventArgs e)
+        {
+            PrintAllProducts();
+        }
+
+        private void PrintAllProducts()
+        {
+            var products = productService.GetAllProducts();
+            var sb = new StringBuilder();
+            foreach (var p in products)
+            {
+                sb.AppendLine($"• {p.ProductId} - {p.Name}");
+            }
+            txtBoxShowList.Clear();
+            txtBoxShowList.Text += sb.ToString();
+        }
+
+        private void PrintAllSuppliers()
+        {
+            var suppliers = supplierService.GetAllSuppliers();
+            var sb = new StringBuilder();
+            foreach (var s in suppliers)
+            {
+                sb.AppendLine($"• {s.SupplierId} - {s.Name}");
+            }
+            txtBoxShowList.Clear();
+            txtBoxShowList.Text += sb.ToString();
+        }
+        private void PrintAllCategories()
+        {
+            var categories = categoryService.GetAllCategories();
+            var sb = new StringBuilder();
+            foreach (var category in categories)
+            {
+                sb.AppendLine($"• {category.CategoryId} - {category.Name}");
+            }
+            txtBoxShowList.Clear();
+            txtBoxShowList.Text += sb.ToString();
+        }
+
+        private void newSupplierEditPr_MouseClick(object sender, MouseEventArgs e)
+        {
+            PrintAllSuppliers();
+        }
+
+        private void prodIDDelProd_MouseClick(object sender, MouseEventArgs e)
+        {
+            PrintAllProducts();
+        }
+
+        private void CatIDEditCat_MouseClick(object sender, MouseEventArgs e)
+        {
+            PrintAllCategories();
+        }
+
+        private void catIDDelCat_MouseClick(object sender, MouseEventArgs e)
+        {
+            PrintAllCategories();
+        }
+
+        private void prodIDAddTr_MouseClick(object sender, MouseEventArgs e)
+        {
+            PrintAllProducts();
         }
     }
 }

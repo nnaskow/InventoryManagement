@@ -72,30 +72,30 @@ namespace FormsApplication
             // 
             wlcmbackLabel.AutoSize = true;
             wlcmbackLabel.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            wlcmbackLabel.Location = new Point(258, 55);
+            wlcmbackLabel.Location = new Point(258, 42);
             wlcmbackLabel.Margin = new Padding(4, 0, 4, 0);
             wlcmbackLabel.Name = "wlcmbackLabel";
-            wlcmbackLabel.Size = new Size(145, 21);
+            wlcmbackLabel.Size = new Size(184, 28);
             wlcmbackLabel.TabIndex = 1;
             wlcmbackLabel.Text = "Вход в системата";
             // 
             // usernameInput
             // 
             usernameInput.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            usernameInput.Location = new Point(223, 79);
+            usernameInput.Location = new Point(223, 66);
             usernameInput.Margin = new Padding(4, 3, 4, 3);
             usernameInput.Name = "usernameInput";
-            usernameInput.Size = new Size(229, 22);
+            usernameInput.Size = new Size(229, 26);
             usernameInput.TabIndex = 3;
             // 
             // passwLabel
             // 
             passwLabel.AutoSize = true;
             passwLabel.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            passwLabel.Location = new Point(198, 119);
+            passwLabel.Location = new Point(198, 106);
             passwLabel.Margin = new Padding(4, 0, 4, 0);
             passwLabel.Name = "passwLabel";
-            passwLabel.Size = new Size(30, 21);
+            passwLabel.Size = new Size(40, 28);
             passwLabel.TabIndex = 4;
             passwLabel.Text = "🔒";
             // 
@@ -103,20 +103,20 @@ namespace FormsApplication
             // 
             usrnmLabel.AutoSize = true;
             usrnmLabel.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            usrnmLabel.Location = new Point(198, 79);
+            usrnmLabel.Location = new Point(198, 66);
             usrnmLabel.Margin = new Padding(4, 0, 4, 0);
             usrnmLabel.Name = "usrnmLabel";
-            usrnmLabel.Size = new Size(30, 21);
+            usrnmLabel.Size = new Size(40, 28);
             usrnmLabel.TabIndex = 5;
             usrnmLabel.Text = "👤";
             // 
             // passwordInput
             // 
             passwordInput.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            passwordInput.Location = new Point(223, 122);
+            passwordInput.Location = new Point(223, 109);
             passwordInput.Margin = new Padding(4, 3, 4, 3);
             passwordInput.Name = "passwordInput";
-            passwordInput.Size = new Size(229, 22);
+            passwordInput.Size = new Size(229, 26);
             passwordInput.TabIndex = 6;
             // 
             // btnLogIn
@@ -138,7 +138,7 @@ namespace FormsApplication
             checkBox1.Location = new Point(460, 127);
             checkBox1.Margin = new Padding(4, 3, 4, 3);
             checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(69, 17);
+            checkBox1.Size = new Size(88, 23);
             checkBox1.TabIndex = 8;
             checkBox1.Text = "Покажи";
             checkBox1.UseVisualStyleBackColor = true;
@@ -151,7 +151,7 @@ namespace FormsApplication
             messageText.Location = new Point(262, 185);
             messageText.Margin = new Padding(4, 0, 4, 0);
             messageText.Name = "messageText";
-            messageText.Size = new Size(108, 21);
+            messageText.Size = new Size(133, 28);
             messageText.TabIndex = 9;
             messageText.Text = "messageText";
             messageText.Visible = false;
@@ -163,7 +163,7 @@ namespace FormsApplication
             msgTxt2.Location = new Point(228, 185);
             msgTxt2.Margin = new Padding(4, 0, 4, 0);
             msgTxt2.Name = "msgTxt2";
-            msgTxt2.Size = new Size(72, 21);
+            msgTxt2.Size = new Size(90, 28);
             msgTxt2.TabIndex = 10;
             msgTxt2.Text = "msgtxt2";
             msgTxt2.Visible = false;
@@ -175,7 +175,7 @@ namespace FormsApplication
             label1.Location = new Point(277, 185);
             label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new Size(57, 21);
+            label1.Size = new Size(70, 28);
             label1.TabIndex = 11;
             label1.Text = "label1";
             label1.Visible = false;
@@ -196,7 +196,7 @@ namespace FormsApplication
             rememberMeCheckBox.Location = new Point(375, 166);
             rememberMeCheckBox.Margin = new Padding(4, 3, 4, 3);
             rememberMeCheckBox.Name = "rememberMeCheckBox";
-            rememberMeCheckBox.Size = new Size(93, 17);
+            rememberMeCheckBox.Size = new Size(117, 23);
             rememberMeCheckBox.TabIndex = 13;
             rememberMeCheckBox.Text = "Запомни ме";
             rememberMeCheckBox.UseVisualStyleBackColor = true;
@@ -224,12 +224,12 @@ namespace FormsApplication
             panel2.Margin = new Padding(4, 3, 4, 3);
             panel2.Name = "panel2";
             panel2.Padding = new Padding(2);
-            panel2.Size = new Size(552, 229);
+            panel2.Size = new Size(556, 229);
             panel2.TabIndex = 14;
             // 
             // LoginForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             BackColor = Color.WhiteSmoke;
