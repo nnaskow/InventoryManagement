@@ -36,34 +36,42 @@
             // productsList
             // 
             productsList.AutoSize = true;
-            productsList.Location = new Point(28, 30);
+            productsList.BackColor = Color.Transparent;
+            productsList.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            productsList.ForeColor = SystemColors.Control;
+            productsList.Location = new Point(12, 42);
             productsList.Name = "productsList";
-            productsList.Size = new Size(147, 23);
+            productsList.Size = new Size(138, 21);
             productsList.TabIndex = 0;
             productsList.Text = "Лист с продукти";
             // 
             // productsListTxtBox
             // 
             productsListTxtBox.BackColor = Color.WhiteSmoke;
-            productsListTxtBox.Location = new Point(12, 56);
+            productsListTxtBox.Location = new Point(12, 64);
+            productsListTxtBox.MaximumSize = new Size(373, 508);
+            productsListTxtBox.MinimumSize = new Size(373, 508);
             productsListTxtBox.Multiline = true;
             productsListTxtBox.Name = "productsListTxtBox";
             productsListTxtBox.ReadOnly = true;
             productsListTxtBox.ScrollBars = ScrollBars.Vertical;
-            productsListTxtBox.Size = new Size(413, 560);
+            productsListTxtBox.Size = new Size(373, 508);
             productsListTxtBox.TabIndex = 11;
             // 
             // ProductsForm
             // 
-            AutoScaleDimensions = new SizeF(10F, 23F);
+            AutoScaleDimensions = new SizeF(8F, 19F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.WhiteSmoke;
-            ClientSize = new Size(437, 652);
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            ClientSize = new Size(402, 593);
             Controls.Add(productsListTxtBox);
             Controls.Add(productsList);
             Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 204);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(4, 3, 4, 3);
+            MaximumSize = new Size(418, 632);
+            MinimumSize = new Size(418, 632);
             Name = "ProductsForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "ProductsForm";

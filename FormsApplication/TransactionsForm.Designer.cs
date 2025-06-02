@@ -37,33 +37,40 @@
             // 
             transactionListTxtBox.BackColor = Color.WhiteSmoke;
             transactionListTxtBox.Location = new Point(12, 58);
+            transactionListTxtBox.MaximumSize = new Size(373, 508);
+            transactionListTxtBox.MinimumSize = new Size(373, 508);
             transactionListTxtBox.Multiline = true;
             transactionListTxtBox.Name = "transactionListTxtBox";
             transactionListTxtBox.ReadOnly = true;
             transactionListTxtBox.ScrollBars = ScrollBars.Vertical;
-            transactionListTxtBox.Size = new Size(413, 560);
+            transactionListTxtBox.Size = new Size(373, 508);
             transactionListTxtBox.TabIndex = 17;
             // 
             // transactionList
             // 
             transactionList.AutoSize = true;
-            transactionList.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            transactionList.Location = new Point(40, 35);
+            transactionList.BackColor = Color.Transparent;
+            transactionList.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            transactionList.ForeColor = SystemColors.Control;
+            transactionList.Location = new Point(12, 36);
             transactionList.Name = "transactionList";
-            transactionList.Size = new Size(165, 23);
+            transactionList.Size = new Size(155, 21);
             transactionList.TabIndex = 16;
             transactionList.Text = "Лист с транзакции";
             // 
             // TransactionsForm
             // 
-            AutoScaleDimensions = new SizeF(10F, 23F);
+            AutoScaleDimensions = new SizeF(8F, 19F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(437, 652);
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            ClientSize = new Size(402, 593);
             Controls.Add(transactionListTxtBox);
             Controls.Add(transactionList);
             Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 204);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(4, 3, 4, 3);
+            MaximumSize = new Size(418, 632);
+            MinimumSize = new Size(418, 632);
             Name = "TransactionsForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "TransactionsForm";

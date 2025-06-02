@@ -101,7 +101,7 @@ namespace InventoryManagement.Services
         {
             using (var context = new InventoryManagementContext())
             {
-                return context.Products.Count();
+                return context.Products.Sum(p => p.Quantity.GetValueOrDefault());
             }
         }
         public List<Product> GetLowStockProducts(int num)

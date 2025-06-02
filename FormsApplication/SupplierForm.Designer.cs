@@ -37,32 +37,41 @@
             // 
             supplierListTxtBox.BackColor = Color.WhiteSmoke;
             supplierListTxtBox.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            supplierListTxtBox.Location = new Point(12, 54);
+            supplierListTxtBox.Location = new Point(12, 64);
+            supplierListTxtBox.Margin = new Padding(3, 2, 3, 2);
+            supplierListTxtBox.MaximumSize = new Size(373, 508);
+            supplierListTxtBox.MinimumSize = new Size(373, 508);
             supplierListTxtBox.Multiline = true;
             supplierListTxtBox.Name = "supplierListTxtBox";
             supplierListTxtBox.ReadOnly = true;
             supplierListTxtBox.ScrollBars = ScrollBars.Vertical;
-            supplierListTxtBox.Size = new Size(413, 560);
+            supplierListTxtBox.Size = new Size(373, 508);
             supplierListTxtBox.TabIndex = 15;
             // 
             // suppliersList
             // 
             suppliersList.AutoSize = true;
-            suppliersList.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            suppliersList.Location = new Point(40, 31);
+            suppliersList.BackColor = Color.Transparent;
+            suppliersList.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            suppliersList.ForeColor = SystemColors.Control;
+            suppliersList.Location = new Point(12, 43);
             suppliersList.Name = "suppliersList";
-            suppliersList.Size = new Size(166, 23);
+            suppliersList.Size = new Size(156, 21);
             suppliersList.TabIndex = 14;
             suppliersList.Text = "Лист с доставчици";
             // 
             // SupplierForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(437, 652);
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            ClientSize = new Size(402, 593);
             Controls.Add(supplierListTxtBox);
             Controls.Add(suppliersList);
             Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(3, 2, 3, 2);
+            MaximumSize = new Size(418, 632);
+            MinimumSize = new Size(418, 632);
             Name = "SupplierForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "SupplierForm";

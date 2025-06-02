@@ -25,7 +25,7 @@ namespace FormsApplication
         private void LoginForm_Load(object sender, EventArgs e)
         {
             btnLogIn.FlatStyle = FlatStyle.Flat;
-            btnLogIn.BackColor = Color.FromArgb(45, 137, 239);
+            btnLogIn.BackColor = ColorTranslator.FromHtml("#415A77");
             btnLogIn.ForeColor = Color.White;
             btnLogIn.Font = new Font("Segoe UI", 10, FontStyle.Bold);
             btnLogIn.Cursor = Cursors.Hand;
@@ -38,7 +38,7 @@ namespace FormsApplication
                 rememberMeCheckBox.Checked = true;
             }
         }
-      
+
         private void checkBox1_CheckedChanged_1(object sender, EventArgs e)
         {
             if (checkBox1.Checked == true)
@@ -51,21 +51,24 @@ namespace FormsApplication
         private async void btnLogIn_Click(object sender, EventArgs e)
         {
             if ((usernameInput.Text == "nikolay" && passwordInput.Text == "Nikolay123!") ||
-           (usernameInput.Text == "mihail" && passwordInput.Text == "Mihail123!"))
+               (usernameInput.Text == "mihail" && passwordInput.Text == "Mihail123!"))
             {
                 label1.Visible = true;
-                label1.ForeColor = Color.Black;
-                label1.Text = "Проверка..";
-                await Task.Delay(2000);
+                label1.ForeColor = Color.White;
+                label1.Text = "Проверяване..";
+                await Task.Delay(1300);
+
                 label1.Visible = false;
                 messageText.Visible = true;
                 messageText.ForeColor = Color.Green;
-                messageText.Text = "Успешен логин.";
+                messageText.Text = "Успешен вход. Пренасочване..";
                 await Task.Delay(1000);
+
                 MainForm m = new MainForm(usernameInput.Text);
-                LoginForm l = new LoginForm();
+                m.FormClosed += (s, args) => this.Close();
                 m.Show();
                 this.Hide();
+                notifyIcon.Visible = false;
             }
             else
             {
@@ -75,6 +78,7 @@ namespace FormsApplication
                 await Task.Delay(2500);
                 msgTxt2.Visible = false;
             }
+
             if (rememberMeCheckBox.Checked)
             {
                 Properties.Settings.Default.Username = usernameInput.Text;
@@ -91,6 +95,11 @@ namespace FormsApplication
         }
 
         private void rememberMeCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void passwLabel_Click(object sender, EventArgs e)
         {
 
         }

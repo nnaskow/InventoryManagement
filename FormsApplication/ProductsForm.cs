@@ -29,7 +29,7 @@ namespace FormsApplication
             var sb = new StringBuilder();
             foreach (var p in products)
             {
-                sb.AppendLine($"• {p.ProductId} - {p.Name} - {p.Quantity} - {p.Price} - {p.Supplier.Name}");
+                sb.AppendLine($"• {p.ProductId} - {p.Name} - {p.Quantity} бр. - {p.Price} лв. - {p.Supplier.Name}");
             }
             productsListTxtBox.Clear();
             productsListTxtBox.Text += sb.ToString();
