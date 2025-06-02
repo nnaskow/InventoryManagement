@@ -72,7 +72,7 @@ namespace FormsApplication
             // 
             wlcmbackLabel.AutoSize = true;
             wlcmbackLabel.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            wlcmbackLabel.Location = new Point(258, 42);
+            wlcmbackLabel.Location = new Point(245, 35);
             wlcmbackLabel.Margin = new Padding(4, 0, 4, 0);
             wlcmbackLabel.Name = "wlcmbackLabel";
             wlcmbackLabel.Size = new Size(184, 28);
@@ -92,7 +92,7 @@ namespace FormsApplication
             // 
             passwLabel.AutoSize = true;
             passwLabel.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            passwLabel.Location = new Point(198, 106);
+            passwLabel.Location = new Point(185, 104);
             passwLabel.Margin = new Padding(4, 0, 4, 0);
             passwLabel.Name = "passwLabel";
             passwLabel.Size = new Size(40, 28);
@@ -103,7 +103,7 @@ namespace FormsApplication
             // 
             usrnmLabel.AutoSize = true;
             usrnmLabel.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            usrnmLabel.Location = new Point(198, 66);
+            usrnmLabel.Location = new Point(185, 64);
             usrnmLabel.Margin = new Padding(4, 0, 4, 0);
             usrnmLabel.Name = "usrnmLabel";
             usrnmLabel.Size = new Size(40, 28);
@@ -135,7 +135,7 @@ namespace FormsApplication
             // 
             checkBox1.AutoSize = true;
             checkBox1.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            checkBox1.Location = new Point(460, 127);
+            checkBox1.Location = new Point(461, 112);
             checkBox1.Margin = new Padding(4, 3, 4, 3);
             checkBox1.Name = "checkBox1";
             checkBox1.Size = new Size(88, 23);
@@ -193,7 +193,7 @@ namespace FormsApplication
             // 
             rememberMeCheckBox.AutoSize = true;
             rememberMeCheckBox.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            rememberMeCheckBox.Location = new Point(375, 166);
+            rememberMeCheckBox.Location = new Point(375, 157);
             rememberMeCheckBox.Margin = new Padding(4, 3, 4, 3);
             rememberMeCheckBox.Name = "rememberMeCheckBox";
             rememberMeCheckBox.Size = new Size(117, 23);
@@ -205,7 +205,7 @@ namespace FormsApplication
             // panel2
             // 
             panel2.AutoSize = true;
-            panel2.BackColor = SystemColors.ButtonFace;
+            panel2.BackColor = Color.Gainsboro;
             panel2.BorderStyle = BorderStyle.FixedSingle;
             panel2.Controls.Add(usernameInput);
             panel2.Controls.Add(rememberMeCheckBox);
@@ -216,15 +216,15 @@ namespace FormsApplication
             panel2.Controls.Add(checkBox1);
             panel2.Controls.Add(btnLogIn);
             panel2.Controls.Add(passwordInput);
-            panel2.Controls.Add(usrnmLabel);
-            panel2.Controls.Add(passwLabel);
             panel2.Controls.Add(wlcmbackLabel);
             panel2.Controls.Add(pictureBox1);
+            panel2.Controls.Add(passwLabel);
+            panel2.Controls.Add(usrnmLabel);
             panel2.Location = new Point(13, 12);
             panel2.Margin = new Padding(4, 3, 4, 3);
             panel2.Name = "panel2";
             panel2.Padding = new Padding(2);
-            panel2.Size = new Size(556, 229);
+            panel2.Size = new Size(557, 229);
             panel2.TabIndex = 14;
             // 
             // LoginForm

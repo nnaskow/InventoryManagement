@@ -67,6 +67,7 @@ namespace FormsApplication
                 Quantity = p.Quantity,
                 Supplier = p.Supplier.Name
             }).ToList();
+            PopulateComboBoxWithIds(categoryComboBox, categories, p => p.CategoryId);
         }
         private void Timer_Tick(object sender, EventArgs e)
         {
@@ -84,29 +85,26 @@ namespace FormsApplication
         {
             if (tabControl1.SelectedTab == tabPage1)
             {
-                txtBoxShowList.Text = "Products selected";
-
+                PrintAllProducts();
             }
             else if (tabControl1.SelectedTab == tabPage2)
             {
-                txtBoxShowList.Text = "Categories selected";
+                PrintAllCategories();
             }
             else if (tabControl1.SelectedTab == tabPage4)
             {
-                txtBoxShowList.Text = "Filters selected";
+                PrintAllProducts();
             }
             else if (tabControl1.SelectedTab == tabPage5)
             {
-                txtBoxShowList.Text = "Suppliers selected";
+                PrintAllSuppliers();
             }
             else if (tabControl1.SelectedTab == tabPage6)
             {
-                txtBoxShowList.Text = "Reports selected";
+                PrintAllProducts();
             }
 
         }
-
-
 
         private void SupplierComboBox_MouseClick(object sender, MouseEventArgs e)
         {
@@ -116,7 +114,6 @@ namespace FormsApplication
         {
             PrintAllCategories();
         }
-
 
         private void newCatEditPr_MouseClick(object sender, MouseEventArgs e)
         {
@@ -134,7 +131,7 @@ namespace FormsApplication
             var sb = new StringBuilder();
             foreach (var p in products)
             {
-                sb.AppendLine($"• {p.ProductId} - {p.Name}");
+                sb.AppendLine($"•  {p.ProductId} - {p.Name}");
             }
             txtBoxShowList.Clear();
             txtBoxShowList.Text += sb.ToString();
@@ -187,5 +184,153 @@ namespace FormsApplication
         {
             PrintAllProducts();
         }
+
+        private void ProductsButton_Click(object sender, EventArgs e)
+        {
+            ProductsForm pr = new ProductsForm();
+            pr.Show();
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            CategoriesForm c = new CategoriesForm();
+            c.Show();
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            TransactionsForm t = new TransactionsForm();
+            t.Show();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            SupplierForm s = new SupplierForm();
+            s.Show();
+        }
+
+        private void filterByCatButton_Click(object sender, EventArgs e)
+        {
+            var categories = categoryService.GetAllCategories();
+            var products = productService.GetAllProducts();
+
+            var groupedProducts = categories.Select(cat => new
+            {
+                CategoryName = cat.Name,
+                Products = products.Where(p => p.CategoryId == cat.CategoryId).ToList()
+            });
+
+            var output = new StringBuilder();
+
+            foreach (var group in groupedProducts)
+            {
+                output.AppendLine($"Категория: {group.CategoryName}");
+                foreach (var product in group.Products)
+                {
+                    output.AppendLine($"  - {product.Name}");
+                }
+                output.AppendLine();
+            }
+            filterByCatTxtBox.Text = output.ToString();
+        }
+
+        private void filterBySupplierButton_Click(object sender, EventArgs e)
+        {
+            var suppliers = supplierService.GetAllSuppliers();
+            var products = productService.GetAllProducts();
+
+            var groupedProducts = suppliers.Select(s => new
+            {
+                SupplierName = s.Name,
+                Products = products.Where(p => p.SupplierId == s.SupplierId).ToList()
+            });
+
+            var output = new StringBuilder();
+
+            foreach (var group in groupedProducts)
+            {
+                output.AppendLine($"Доставчик: {group.SupplierName}");
+                foreach (var product in group.Products)
+                {
+                    output.AppendLine($"  - {product.Name}");
+                }
+                output.AppendLine();
+            }
+
+            filterByCatTxtBox.Text = output.ToString();
+        }
+
+        private void CatReportButton_Click(object sender, EventArgs e)
+        {
+            var categories = categoryService.GetAllCategories();
+            var products = productService.GetAllProducts();
+            var suppliers = supplierService.GetAllSuppliers();
+
+            var output = new StringBuilder();
+
+            foreach (var category in categories)
+            {
+                var catProducts = products.Where(p => p.CategoryId == category.CategoryId).ToList();
+                var productCount = catProducts.Count;
+                var totalValue = catProducts.Sum(p => p.Price);
+
+                output.AppendLine($"Категория: {category.Name}");
+
+                foreach (var product in catProducts)
+                {
+                    var supplier = suppliers.FirstOrDefault(s => s.SupplierId == product.SupplierId);
+                    var supplierName = supplier != null ? supplier.Name : "Неизвестен доставчик";
+                    output.AppendLine($"  - {product.Name} (Доставчик: {supplierName})");
+                }
+
+                output.AppendLine($"  Брой продукти: {productCount}");
+                output.AppendLine($"  Обща стойност: {totalValue:C}");
+                output.AppendLine();
+            }
+
+            catReportTxtBox.Text = output.ToString();
+        }
+
+        private void lowStockButton_Click(object sender, EventArgs e)
+        {
+            int threshold = 5; 
+
+            var lowStockProducts = productService.GetLowStockProducts(threshold);
+            var groupedByCategory = lowStockProducts.GroupBy(p => p.Category);
+
+            var output = new StringBuilder();
+
+            foreach (var group in groupedByCategory)
+            {
+                var categoryName = group.Key != null ? group.Key.Name : "Неизвестна категория";
+                var productCount = group.Count();
+                var totalValue = group.Sum(p => p.Price * p.Quantity);
+
+                output.AppendLine($"Категория: {categoryName}");
+
+                foreach (var product in group)
+                {
+                    var supplierName = product.Supplier != null ? product.Supplier.Name : "Неизвестен доставчик";
+                    output.AppendLine($"  - {product.Name} (Доставчик: {supplierName}, Наличност: {product.Quantity})");
+                }
+
+                output.AppendLine($"  Брой продукти с ниска наличност: {productCount}");
+                output.AppendLine($"  Обща стойност (налично): {totalValue:C}");
+                output.AppendLine();
+            }
+
+            lowStockReportTxtBox.Text = output.ToString();
+        }
+        private void PopulateComboBoxWithIds<T>(ComboBox comboBox, List<T> items, Func<T, object> idSelector)
+        {
+            comboBox.Items.Clear();
+
+            foreach (var item in items)
+            {
+                comboBox.Items.Add(idSelector(item));
+            }
+        }
+
+
     }
 }

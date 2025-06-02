@@ -63,6 +63,7 @@ namespace FormsApplication
                 messageText.Text = "Успешен логин.";
                 await Task.Delay(1000);
                 MainForm m = new MainForm(usernameInput.Text);
+                LoginForm l = new LoginForm();
                 m.Show();
                 this.Hide();
             }

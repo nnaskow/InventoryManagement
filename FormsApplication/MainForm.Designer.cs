@@ -97,12 +97,12 @@
             tabPage2 = new TabPage();
             catIDDelCat = new ComboBox();
             CatIDEditCat = new ComboBox();
-            button2 = new Button();
+            delCatButton = new Button();
             label23 = new Label();
             label24 = new Label();
             label25 = new Label();
-            button3 = new Button();
-            button4 = new Button();
+            editCatButton = new Button();
+            addCatButton = new Button();
             newNameEditCat = new TextBox();
             label31 = new Label();
             label32 = new Label();
@@ -120,13 +120,56 @@
             quantityAddTr = new TextBox();
             label39 = new Label();
             label38 = new Label();
-            button6 = new Button();
+            addTransButton = new Button();
             label30 = new Label();
             label35 = new Label();
             label36 = new Label();
             tabPage4 = new TabPage();
+            filterBySupTxtBox = new TextBox();
+            filterByCatTxtBox = new TextBox();
+            filterBySupplierButton = new Button();
+            filterByCatButton = new Button();
             tabPage5 = new TabPage();
+            newEmailEdSup = new TextBox();
+            label53 = new Label();
+            newPhoneEdSup = new TextBox();
+            label54 = new Label();
+            newContactEdSup = new TextBox();
+            label55 = new Label();
+            EmailAddSup = new TextBox();
+            label52 = new Label();
+            PhoneAddSup = new TextBox();
+            label51 = new Label();
+            ContactNameAddSup = new TextBox();
+            label50 = new Label();
+            SupIDDelSup = new ComboBox();
+            supIDEditSup = new ComboBox();
+            delSuplierButton = new Button();
+            label27 = new Label();
+            label28 = new Label();
+            label29 = new Label();
+            editSupplierButton = new Button();
+            addSupplierButton = new Button();
+            newNameEdSup = new TextBox();
+            label43 = new Label();
+            label44 = new Label();
+            label45 = new Label();
+            label46 = new Label();
+            label47 = new Label();
+            supplierNameAddSup = new TextBox();
+            label48 = new Label();
+            label49 = new Label();
             tabPage6 = new TabPage();
+            lowStockReportTxtBox = new TextBox();
+            catReportTxtBox = new TextBox();
+            lowStockButton = new Button();
+            CatReportButton = new Button();
+            ProductsButton = new Button();
+            transcationButton = new Button();
+            button8 = new Button();
+            button5 = new Button();
+            label26 = new Label();
+            label56 = new Label();
             summaryPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)lowStockGrid).BeginInit();
             ((System.ComponentModel.ISupportInitialize)productBindingSource).BeginInit();
@@ -136,6 +179,9 @@
             tabPage1.SuspendLayout();
             tabPage2.SuspendLayout();
             tabPage3.SuspendLayout();
+            tabPage4.SuspendLayout();
+            tabPage5.SuspendLayout();
+            tabPage6.SuspendLayout();
             SuspendLayout();
             // 
             // welcomeTxt
@@ -156,7 +202,7 @@
             button1.Name = "button1";
             button1.Size = new Size(101, 30);
             button1.TabIndex = 1;
-            button1.Text = "Exit";
+            button1.Text = "Изход";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
@@ -175,11 +221,11 @@
             summaryPanel.Controls.Add(lowStockGrid);
             summaryPanel.Controls.Add(lastTransactionsLabel);
             summaryPanel.Controls.Add(transactionStats);
-            summaryPanel.Controls.Add(capacityLevel);
             summaryPanel.Controls.Add(productsBar);
             summaryPanel.Controls.Add(welcomeTxt);
             summaryPanel.Controls.Add(label2);
             summaryPanel.Controls.Add(label3);
+            summaryPanel.Controls.Add(capacityLevel);
             summaryPanel.Location = new Point(14, 12);
             summaryPanel.Name = "summaryPanel";
             summaryPanel.Size = new Size(440, 636);
@@ -347,7 +393,7 @@
             // 
             capacityLevel.AutoSize = true;
             capacityLevel.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            capacityLevel.Location = new Point(18, 571);
+            capacityLevel.Location = new Point(18, 567);
             capacityLevel.Margin = new Padding(5, 0, 5, 0);
             capacityLevel.Name = "capacityLevel";
             capacityLevel.Size = new Size(291, 28);
@@ -389,7 +435,7 @@
             // timeLabel
             // 
             timeLabel.AutoSize = true;
-            timeLabel.Location = new Point(1036, 12);
+            timeLabel.Location = new Point(1014, 9);
             timeLabel.Name = "timeLabel";
             timeLabel.Size = new Size(80, 23);
             timeLabel.TabIndex = 3;
@@ -408,7 +454,7 @@
             tabControl1.Multiline = true;
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(638, 567);
+            tabControl1.Size = new Size(638, 552);
             tabControl1.TabIndex = 4;
             tabControl1.SelectedIndexChanged += tabControl1_SelectedIndexChanged;
             // 
@@ -454,7 +500,7 @@
             tabPage1.Location = new Point(4, 30);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(630, 533);
+            tabPage1.Size = new Size(630, 518);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Продукти";
             tabPage1.UseVisualStyleBackColor = true;
@@ -497,7 +543,7 @@
             // 
             // DeletePrButton
             // 
-            DeletePrButton.Location = new Point(447, 168);
+            DeletePrButton.Location = new Point(457, 251);
             DeletePrButton.Margin = new Padding(5, 4, 5, 4);
             DeletePrButton.Name = "DeletePrButton";
             DeletePrButton.Size = new Size(111, 30);
@@ -507,7 +553,7 @@
             // 
             // prodIDDelProd
             // 
-            prodIDDelProd.Location = new Point(416, 135);
+            prodIDDelProd.Location = new Point(426, 218);
             prodIDDelProd.Name = "prodIDDelProd";
             prodIDDelProd.Size = new Size(171, 29);
             prodIDDelProd.TabIndex = 35;
@@ -516,7 +562,7 @@
             // label20
             // 
             label20.AutoSize = true;
-            label20.Location = new Point(416, 115);
+            label20.Location = new Point(426, 192);
             label20.Name = "label20";
             label20.Size = new Size(126, 23);
             label20.TabIndex = 34;
@@ -525,7 +571,7 @@
             // label21
             // 
             label21.AutoSize = true;
-            label21.Location = new Point(416, 73);
+            label21.Location = new Point(426, 150);
             label21.Name = "label21";
             label21.Size = new Size(197, 23);
             label21.TabIndex = 33;
@@ -534,7 +580,7 @@
             // label22
             // 
             label22.AutoSize = true;
-            label22.Location = new Point(416, 90);
+            label22.Location = new Point(426, 167);
             label22.Name = "label22";
             label22.Size = new Size(199, 23);
             label22.TabIndex = 32;
@@ -739,18 +785,18 @@
             label6.AutoSize = true;
             label6.Location = new Point(21, 184);
             label6.Name = "label6";
-            label6.Size = new Size(99, 23);
+            label6.Size = new Size(144, 23);
             label6.TabIndex = 4;
-            label6.Text = "Доставчик";
+            label6.Text = "ID на доставчик";
             // 
             // label4
             // 
             label4.AutoSize = true;
             label4.Location = new Point(21, 125);
             label4.Name = "label4";
-            label4.Size = new Size(96, 23);
+            label4.Size = new Size(142, 23);
             label4.TabIndex = 2;
-            label4.Text = "Категория";
+            label4.Text = "ID на категория";
             // 
             // productNameTxtBox
             // 
@@ -781,12 +827,12 @@
             // 
             tabPage2.Controls.Add(catIDDelCat);
             tabPage2.Controls.Add(CatIDEditCat);
-            tabPage2.Controls.Add(button2);
+            tabPage2.Controls.Add(delCatButton);
             tabPage2.Controls.Add(label23);
             tabPage2.Controls.Add(label24);
             tabPage2.Controls.Add(label25);
-            tabPage2.Controls.Add(button3);
-            tabPage2.Controls.Add(button4);
+            tabPage2.Controls.Add(editCatButton);
+            tabPage2.Controls.Add(addCatButton);
             tabPage2.Controls.Add(newNameEditCat);
             tabPage2.Controls.Add(label31);
             tabPage2.Controls.Add(label32);
@@ -799,7 +845,7 @@
             tabPage2.Location = new Point(4, 29);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(630, 534);
+            tabPage2.Size = new Size(630, 519);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Категории";
             tabPage2.UseVisualStyleBackColor = true;
@@ -822,15 +868,15 @@
             CatIDEditCat.TabIndex = 74;
             CatIDEditCat.MouseClick += CatIDEditCat_MouseClick;
             // 
-            // button2
+            // delCatButton
             // 
-            button2.Location = new Point(442, 124);
-            button2.Margin = new Padding(5, 4, 5, 4);
-            button2.Name = "button2";
-            button2.Size = new Size(111, 30);
-            button2.TabIndex = 73;
-            button2.Text = "Изтриване";
-            button2.UseVisualStyleBackColor = true;
+            delCatButton.Location = new Point(442, 133);
+            delCatButton.Margin = new Padding(5, 4, 5, 4);
+            delCatButton.Name = "delCatButton";
+            delCatButton.Size = new Size(111, 30);
+            delCatButton.TabIndex = 73;
+            delCatButton.Text = "Изтриване";
+            delCatButton.UseVisualStyleBackColor = true;
             // 
             // label23
             // 
@@ -859,25 +905,25 @@
             label25.TabIndex = 69;
             label25.Text = "___________________________";
             // 
-            // button3
+            // editCatButton
             // 
-            button3.Location = new Point(238, 310);
-            button3.Margin = new Padding(5, 4, 5, 4);
-            button3.Name = "button3";
-            button3.Size = new Size(129, 30);
-            button3.TabIndex = 68;
-            button3.Text = "Редактиране";
-            button3.UseVisualStyleBackColor = true;
+            editCatButton.Location = new Point(238, 310);
+            editCatButton.Margin = new Padding(5, 4, 5, 4);
+            editCatButton.Name = "editCatButton";
+            editCatButton.Size = new Size(129, 30);
+            editCatButton.TabIndex = 68;
+            editCatButton.Text = "Редактиране";
+            editCatButton.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // addCatButton
             // 
-            button4.Location = new Point(58, 129);
-            button4.Margin = new Padding(5, 4, 5, 4);
-            button4.Name = "button4";
-            button4.Size = new Size(101, 30);
-            button4.TabIndex = 43;
-            button4.Text = "Добавяне";
-            button4.UseVisualStyleBackColor = true;
+            addCatButton.Location = new Point(58, 135);
+            addCatButton.Margin = new Padding(5, 4, 5, 4);
+            addCatButton.Name = "addCatButton";
+            addCatButton.Size = new Size(101, 30);
+            addCatButton.TabIndex = 43;
+            addCatButton.Text = "Добавяне";
+            addCatButton.UseVisualStyleBackColor = true;
             // 
             // newNameEditCat
             // 
@@ -933,7 +979,7 @@
             // 
             // CatNameAddCat
             // 
-            CatNameAddCat.Location = new Point(29, 97);
+            CatNameAddCat.Location = new Point(29, 103);
             CatNameAddCat.Name = "CatNameAddCat";
             CatNameAddCat.Size = new Size(171, 29);
             CatNameAddCat.TabIndex = 38;
@@ -965,14 +1011,14 @@
             tabPage3.Controls.Add(quantityAddTr);
             tabPage3.Controls.Add(label39);
             tabPage3.Controls.Add(label38);
-            tabPage3.Controls.Add(button6);
+            tabPage3.Controls.Add(addTransButton);
             tabPage3.Controls.Add(label30);
             tabPage3.Controls.Add(label35);
             tabPage3.Controls.Add(label36);
-            tabPage3.Location = new Point(4, 30);
+            tabPage3.Location = new Point(4, 29);
             tabPage3.Name = "tabPage3";
             tabPage3.Padding = new Padding(3);
-            tabPage3.Size = new Size(630, 533);
+            tabPage3.Size = new Size(630, 519);
             tabPage3.TabIndex = 2;
             tabPage3.Text = "Транзакции";
             tabPage3.UseVisualStyleBackColor = true;
@@ -1036,15 +1082,15 @@
             label38.TabIndex = 81;
             label38.Text = "Тип на транзакцията";
             // 
-            // button6
+            // addTransButton
             // 
-            button6.Location = new Point(44, 305);
-            button6.Margin = new Padding(5, 4, 5, 4);
-            button6.Name = "button6";
-            button6.Size = new Size(101, 30);
-            button6.TabIndex = 71;
-            button6.Text = "Добавяне";
-            button6.UseVisualStyleBackColor = true;
+            addTransButton.Location = new Point(44, 305);
+            addTransButton.Margin = new Padding(5, 4, 5, 4);
+            addTransButton.Name = "addTransButton";
+            addTransButton.Size = new Size(101, 30);
+            addTransButton.TabIndex = 71;
+            addTransButton.Text = "Добавяне";
+            addTransButton.UseVisualStyleBackColor = true;
             // 
             // label30
             // 
@@ -1075,33 +1121,463 @@
             // 
             // tabPage4
             // 
+            tabPage4.Controls.Add(filterBySupTxtBox);
+            tabPage4.Controls.Add(filterByCatTxtBox);
+            tabPage4.Controls.Add(filterBySupplierButton);
+            tabPage4.Controls.Add(filterByCatButton);
             tabPage4.Location = new Point(4, 29);
             tabPage4.Name = "tabPage4";
             tabPage4.Padding = new Padding(3);
-            tabPage4.Size = new Size(630, 534);
+            tabPage4.Size = new Size(630, 519);
             tabPage4.TabIndex = 3;
             tabPage4.Text = "Филтриране";
             tabPage4.UseVisualStyleBackColor = true;
             // 
+            // filterBySupTxtBox
+            // 
+            filterBySupTxtBox.BackColor = Color.Gainsboro;
+            filterBySupTxtBox.Location = new Point(331, 54);
+            filterBySupTxtBox.Multiline = true;
+            filterBySupTxtBox.Name = "filterBySupTxtBox";
+            filterBySupTxtBox.ReadOnly = true;
+            filterBySupTxtBox.ScrollBars = ScrollBars.Vertical;
+            filterBySupTxtBox.Size = new Size(270, 351);
+            filterBySupTxtBox.TabIndex = 13;
+            // 
+            // filterByCatTxtBox
+            // 
+            filterByCatTxtBox.BackColor = Color.Gainsboro;
+            filterByCatTxtBox.Location = new Point(21, 54);
+            filterByCatTxtBox.Multiline = true;
+            filterByCatTxtBox.Name = "filterByCatTxtBox";
+            filterByCatTxtBox.ReadOnly = true;
+            filterByCatTxtBox.ScrollBars = ScrollBars.Vertical;
+            filterByCatTxtBox.Size = new Size(270, 351);
+            filterByCatTxtBox.TabIndex = 12;
+            // 
+            // filterBySupplierButton
+            // 
+            filterBySupplierButton.Location = new Point(381, 429);
+            filterBySupplierButton.Name = "filterBySupplierButton";
+            filterBySupplierButton.Size = new Size(156, 58);
+            filterBySupplierButton.TabIndex = 1;
+            filterBySupplierButton.Text = "Филтриране по доставчици";
+            filterBySupplierButton.UseVisualStyleBackColor = true;
+            filterBySupplierButton.Click += filterBySupplierButton_Click;
+            // 
+            // filterByCatButton
+            // 
+            filterByCatButton.Location = new Point(60, 429);
+            filterByCatButton.Name = "filterByCatButton";
+            filterByCatButton.Size = new Size(156, 58);
+            filterByCatButton.TabIndex = 0;
+            filterByCatButton.Text = "Филтриране по категория";
+            filterByCatButton.UseVisualStyleBackColor = true;
+            filterByCatButton.Click += filterByCatButton_Click;
+            // 
             // tabPage5
             // 
+            tabPage5.Controls.Add(newEmailEdSup);
+            tabPage5.Controls.Add(label53);
+            tabPage5.Controls.Add(newPhoneEdSup);
+            tabPage5.Controls.Add(label54);
+            tabPage5.Controls.Add(newContactEdSup);
+            tabPage5.Controls.Add(label55);
+            tabPage5.Controls.Add(EmailAddSup);
+            tabPage5.Controls.Add(label52);
+            tabPage5.Controls.Add(PhoneAddSup);
+            tabPage5.Controls.Add(label51);
+            tabPage5.Controls.Add(ContactNameAddSup);
+            tabPage5.Controls.Add(label50);
+            tabPage5.Controls.Add(SupIDDelSup);
+            tabPage5.Controls.Add(supIDEditSup);
+            tabPage5.Controls.Add(delSuplierButton);
+            tabPage5.Controls.Add(label27);
+            tabPage5.Controls.Add(label28);
+            tabPage5.Controls.Add(label29);
+            tabPage5.Controls.Add(editSupplierButton);
+            tabPage5.Controls.Add(addSupplierButton);
+            tabPage5.Controls.Add(newNameEdSup);
+            tabPage5.Controls.Add(label43);
+            tabPage5.Controls.Add(label44);
+            tabPage5.Controls.Add(label45);
+            tabPage5.Controls.Add(label46);
+            tabPage5.Controls.Add(label47);
+            tabPage5.Controls.Add(supplierNameAddSup);
+            tabPage5.Controls.Add(label48);
+            tabPage5.Controls.Add(label49);
             tabPage5.Location = new Point(4, 29);
             tabPage5.Name = "tabPage5";
             tabPage5.Padding = new Padding(3);
-            tabPage5.Size = new Size(630, 534);
+            tabPage5.Size = new Size(630, 519);
             tabPage5.TabIndex = 4;
             tabPage5.Text = "Доставчици";
             tabPage5.UseVisualStyleBackColor = true;
             // 
+            // newEmailEdSup
+            // 
+            newEmailEdSup.Location = new Point(328, 329);
+            newEmailEdSup.Name = "newEmailEdSup";
+            newEmailEdSup.Size = new Size(171, 29);
+            newEmailEdSup.TabIndex = 104;
+            // 
+            // label53
+            // 
+            label53.AutoSize = true;
+            label53.Location = new Point(328, 310);
+            label53.Name = "label53";
+            label53.Size = new Size(104, 23);
+            label53.TabIndex = 103;
+            label53.Text = "Нов Имейл";
+            // 
+            // newPhoneEdSup
+            // 
+            newPhoneEdSup.Location = new Point(328, 268);
+            newPhoneEdSup.Name = "newPhoneEdSup";
+            newPhoneEdSup.Size = new Size(171, 29);
+            newPhoneEdSup.TabIndex = 102;
+            // 
+            // label54
+            // 
+            label54.AutoSize = true;
+            label54.Location = new Point(328, 242);
+            label54.Name = "label54";
+            label54.Size = new Size(118, 23);
+            label54.TabIndex = 101;
+            label54.Text = "Нов Телефон";
+            // 
+            // newContactEdSup
+            // 
+            newContactEdSup.Location = new Point(328, 206);
+            newContactEdSup.Name = "newContactEdSup";
+            newContactEdSup.Size = new Size(171, 29);
+            newContactEdSup.TabIndex = 100;
+            // 
+            // label55
+            // 
+            label55.AutoSize = true;
+            label55.Location = new Point(328, 186);
+            label55.Name = "label55";
+            label55.Size = new Size(190, 23);
+            label55.TabIndex = 99;
+            label55.Text = "Ново Контактно лице";
+            // 
+            // EmailAddSup
+            // 
+            EmailAddSup.Location = new Point(26, 277);
+            EmailAddSup.Name = "EmailAddSup";
+            EmailAddSup.Size = new Size(171, 29);
+            EmailAddSup.TabIndex = 98;
+            // 
+            // label52
+            // 
+            label52.AutoSize = true;
+            label52.Location = new Point(26, 257);
+            label52.Name = "label52";
+            label52.Size = new Size(66, 23);
+            label52.TabIndex = 97;
+            label52.Text = "Имейл";
+            // 
+            // PhoneAddSup
+            // 
+            PhoneAddSup.Location = new Point(26, 221);
+            PhoneAddSup.Name = "PhoneAddSup";
+            PhoneAddSup.Size = new Size(171, 29);
+            PhoneAddSup.TabIndex = 96;
+            // 
+            // label51
+            // 
+            label51.AutoSize = true;
+            label51.Location = new Point(26, 201);
+            label51.Name = "label51";
+            label51.Size = new Size(80, 23);
+            label51.TabIndex = 95;
+            label51.Text = "Телефон";
+            // 
+            // ContactNameAddSup
+            // 
+            ContactNameAddSup.Location = new Point(26, 164);
+            ContactNameAddSup.Name = "ContactNameAddSup";
+            ContactNameAddSup.Size = new Size(171, 29);
+            ContactNameAddSup.TabIndex = 94;
+            // 
+            // label50
+            // 
+            label50.AutoSize = true;
+            label50.Location = new Point(26, 144);
+            label50.Name = "label50";
+            label50.Size = new Size(142, 23);
+            label50.TabIndex = 93;
+            label50.Text = "Контактно лице";
+            // 
+            // SupIDDelSup
+            // 
+            SupIDDelSup.FormattingEnabled = true;
+            SupIDDelSup.Location = new Point(35, 432);
+            SupIDDelSup.Name = "SupIDDelSup";
+            SupIDDelSup.Size = new Size(171, 29);
+            SupIDDelSup.TabIndex = 92;
+            // 
+            // supIDEditSup
+            // 
+            supIDEditSup.FormattingEnabled = true;
+            supIDEditSup.Location = new Point(328, 96);
+            supIDEditSup.Name = "supIDEditSup";
+            supIDEditSup.Size = new Size(171, 29);
+            supIDEditSup.TabIndex = 91;
+            // 
+            // delSuplierButton
+            // 
+            delSuplierButton.Location = new Point(55, 468);
+            delSuplierButton.Margin = new Padding(5, 4, 5, 4);
+            delSuplierButton.Name = "delSuplierButton";
+            delSuplierButton.Size = new Size(111, 30);
+            delSuplierButton.TabIndex = 90;
+            delSuplierButton.Text = "Изтриване";
+            delSuplierButton.UseVisualStyleBackColor = true;
+            // 
+            // label27
+            // 
+            label27.AutoSize = true;
+            label27.Location = new Point(35, 406);
+            label27.Name = "label27";
+            label27.Size = new Size(144, 23);
+            label27.TabIndex = 89;
+            label27.Text = "ID на доставчик";
+            // 
+            // label28
+            // 
+            label28.AutoSize = true;
+            label28.Location = new Point(24, 365);
+            label28.Name = "label28";
+            label28.Size = new Size(205, 23);
+            label28.TabIndex = 88;
+            label28.Text = "Изтриване на достачик";
+            // 
+            // label29
+            // 
+            label29.AutoSize = true;
+            label29.Location = new Point(24, 382);
+            label29.Name = "label29";
+            label29.Size = new Size(199, 23);
+            label29.TabIndex = 87;
+            label29.Text = "___________________________";
+            // 
+            // editSupplierButton
+            // 
+            editSupplierButton.Location = new Point(355, 365);
+            editSupplierButton.Margin = new Padding(5, 4, 5, 4);
+            editSupplierButton.Name = "editSupplierButton";
+            editSupplierButton.Size = new Size(129, 30);
+            editSupplierButton.TabIndex = 86;
+            editSupplierButton.Text = "Редактиране";
+            editSupplierButton.UseVisualStyleBackColor = true;
+            // 
+            // addSupplierButton
+            // 
+            addSupplierButton.Location = new Point(55, 320);
+            addSupplierButton.Margin = new Padding(5, 4, 5, 4);
+            addSupplierButton.Name = "addSupplierButton";
+            addSupplierButton.Size = new Size(101, 30);
+            addSupplierButton.TabIndex = 78;
+            addSupplierButton.Text = "Добавяне";
+            addSupplierButton.UseVisualStyleBackColor = true;
+            // 
+            // newNameEdSup
+            // 
+            newNameEdSup.Location = new Point(328, 150);
+            newNameEdSup.Name = "newNameEdSup";
+            newNameEdSup.Size = new Size(171, 29);
+            newNameEdSup.TabIndex = 85;
+            // 
+            // label43
+            // 
+            label43.AutoSize = true;
+            label43.Location = new Point(328, 130);
+            label43.Name = "label43";
+            label43.Size = new Size(207, 23);
+            label43.TabIndex = 84;
+            label43.Text = "Ново име на доставчик";
+            // 
+            // label44
+            // 
+            label44.AutoSize = true;
+            label44.Location = new Point(328, 70);
+            label44.Name = "label44";
+            label44.Size = new Size(144, 23);
+            label44.TabIndex = 83;
+            label44.Text = "ID на доставчик";
+            // 
+            // label45
+            // 
+            label45.AutoSize = true;
+            label45.Location = new Point(313, 28);
+            label45.Name = "label45";
+            label45.Size = new Size(232, 23);
+            label45.TabIndex = 82;
+            label45.Text = "Редактиране на доставчик";
+            // 
+            // label46
+            // 
+            label46.AutoSize = true;
+            label46.Location = new Point(313, 45);
+            label46.Name = "label46";
+            label46.Size = new Size(199, 23);
+            label46.TabIndex = 81;
+            label46.Text = "___________________________";
+            // 
+            // label47
+            // 
+            label47.AutoSize = true;
+            label47.Location = new Point(26, 36);
+            label47.Name = "label47";
+            label47.Size = new Size(207, 23);
+            label47.TabIndex = 79;
+            label47.Text = "Добавяне на доставчик";
+            // 
+            // supplierNameAddSup
+            // 
+            supplierNameAddSup.Location = new Point(26, 98);
+            supplierNameAddSup.Name = "supplierNameAddSup";
+            supplierNameAddSup.Size = new Size(171, 29);
+            supplierNameAddSup.TabIndex = 77;
+            // 
+            // label48
+            // 
+            label48.AutoSize = true;
+            label48.Location = new Point(26, 78);
+            label48.Name = "label48";
+            label48.Size = new Size(161, 23);
+            label48.TabIndex = 76;
+            label48.Text = "Име на доставчик";
+            // 
+            // label49
+            // 
+            label49.AutoSize = true;
+            label49.Location = new Point(26, 53);
+            label49.Name = "label49";
+            label49.Size = new Size(199, 23);
+            label49.TabIndex = 80;
+            label49.Text = "___________________________";
+            // 
             // tabPage6
             // 
+            tabPage6.Controls.Add(lowStockReportTxtBox);
+            tabPage6.Controls.Add(catReportTxtBox);
+            tabPage6.Controls.Add(lowStockButton);
+            tabPage6.Controls.Add(CatReportButton);
             tabPage6.Location = new Point(4, 29);
             tabPage6.Name = "tabPage6";
             tabPage6.Padding = new Padding(3);
-            tabPage6.Size = new Size(630, 534);
+            tabPage6.Size = new Size(630, 519);
             tabPage6.TabIndex = 5;
             tabPage6.Text = "Отчети";
             tabPage6.UseVisualStyleBackColor = true;
+            // 
+            // lowStockReportTxtBox
+            // 
+            lowStockReportTxtBox.BackColor = Color.Gainsboro;
+            lowStockReportTxtBox.Location = new Point(330, 54);
+            lowStockReportTxtBox.Multiline = true;
+            lowStockReportTxtBox.Name = "lowStockReportTxtBox";
+            lowStockReportTxtBox.ReadOnly = true;
+            lowStockReportTxtBox.ScrollBars = ScrollBars.Vertical;
+            lowStockReportTxtBox.Size = new Size(270, 351);
+            lowStockReportTxtBox.TabIndex = 11;
+            // 
+            // catReportTxtBox
+            // 
+            catReportTxtBox.BackColor = Color.Gainsboro;
+            catReportTxtBox.Location = new Point(20, 54);
+            catReportTxtBox.Multiline = true;
+            catReportTxtBox.Name = "catReportTxtBox";
+            catReportTxtBox.ReadOnly = true;
+            catReportTxtBox.ScrollBars = ScrollBars.Vertical;
+            catReportTxtBox.Size = new Size(270, 351);
+            catReportTxtBox.TabIndex = 10;
+            // 
+            // lowStockButton
+            // 
+            lowStockButton.Location = new Point(392, 425);
+            lowStockButton.Name = "lowStockButton";
+            lowStockButton.Size = new Size(151, 55);
+            lowStockButton.TabIndex = 1;
+            lowStockButton.Text = "Отчет за ниски наличности";
+            lowStockButton.UseVisualStyleBackColor = true;
+            lowStockButton.Click += lowStockButton_Click;
+            // 
+            // CatReportButton
+            // 
+            CatReportButton.Location = new Point(75, 425);
+            CatReportButton.Name = "CatReportButton";
+            CatReportButton.Size = new Size(121, 55);
+            CatReportButton.TabIndex = 0;
+            CatReportButton.Text = "Отчет по категория";
+            CatReportButton.UseVisualStyleBackColor = true;
+            CatReportButton.Click += CatReportButton_Click;
+            // 
+            // ProductsButton
+            // 
+            ProductsButton.Location = new Point(469, 618);
+            ProductsButton.Margin = new Padding(5, 4, 5, 4);
+            ProductsButton.Name = "ProductsButton";
+            ProductsButton.Size = new Size(101, 30);
+            ProductsButton.TabIndex = 5;
+            ProductsButton.Text = "Продукти";
+            ProductsButton.UseVisualStyleBackColor = true;
+            ProductsButton.Click += ProductsButton_Click;
+            // 
+            // transcationButton
+            // 
+            transcationButton.Location = new Point(718, 618);
+            transcationButton.Margin = new Padding(5, 4, 5, 4);
+            transcationButton.Name = "transcationButton";
+            transcationButton.Size = new Size(121, 30);
+            transcationButton.TabIndex = 6;
+            transcationButton.Text = "Транзакции";
+            transcationButton.UseVisualStyleBackColor = true;
+            transcationButton.Click += button7_Click;
+            // 
+            // button8
+            // 
+            button8.Location = new Point(580, 618);
+            button8.Margin = new Padding(5, 4, 5, 4);
+            button8.Name = "button8";
+            button8.Size = new Size(128, 30);
+            button8.TabIndex = 7;
+            button8.Text = "Категории";
+            button8.UseVisualStyleBackColor = true;
+            button8.Click += button8_Click;
+            // 
+            // button5
+            // 
+            button5.Location = new Point(856, 618);
+            button5.Margin = new Padding(5, 4, 5, 4);
+            button5.Name = "button5";
+            button5.Size = new Size(127, 30);
+            button5.TabIndex = 8;
+            button5.Text = "Доставчици";
+            button5.UseVisualStyleBackColor = true;
+            button5.Click += button5_Click;
+            // 
+            // label26
+            // 
+            label26.AutoSize = true;
+            label26.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            label26.Location = new Point(469, 591);
+            label26.Name = "label26";
+            label26.Size = new Size(83, 23);
+            label26.TabIndex = 41;
+            label26.Text = "Списъци";
+            // 
+            // label56
+            // 
+            label56.AutoSize = true;
+            label56.Location = new Point(972, 13);
+            label56.Name = "label56";
+            label56.Size = new Size(122, 23);
+            label56.TabIndex = 41;
+            label56.Text = "________________";
             // 
             // MainForm
             // 
@@ -1110,10 +1586,16 @@
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             BackColor = Color.WhiteSmoke;
             ClientSize = new Size(1110, 661);
+            Controls.Add(label26);
+            Controls.Add(button5);
+            Controls.Add(button8);
+            Controls.Add(transcationButton);
+            Controls.Add(ProductsButton);
             Controls.Add(tabControl1);
             Controls.Add(timeLabel);
             Controls.Add(summaryPanel);
             Controls.Add(button1);
+            Controls.Add(label56);
             Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 204);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(5, 4, 5, 4);
@@ -1134,6 +1616,12 @@
             tabPage2.PerformLayout();
             tabPage3.ResumeLayout(false);
             tabPage3.PerformLayout();
+            tabPage4.ResumeLayout(false);
+            tabPage4.PerformLayout();
+            tabPage5.ResumeLayout(false);
+            tabPage5.PerformLayout();
+            tabPage6.ResumeLayout(false);
+            tabPage6.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -1204,12 +1692,12 @@
         private Label label21;
         private Label label22;
         private Button DeletePrButton;
-        private Button button2;
+        private Button delCatButton;
         private Label label23;
         private Label label24;
         private Label label25;
-        private Button button3;
-        private Button button4;
+        private Button editCatButton;
+        private Button addCatButton;
         private TextBox newNameEditCat;
         private Label label31;
         private Label label32;
@@ -1219,7 +1707,7 @@
         private TextBox CatNameAddCat;
         private Label label41;
         private Label label42;
-        private Button button6;
+        private Button addTransButton;
         private Label label30;
         private Label label35;
         private Label label36;
@@ -1237,5 +1725,48 @@
         private ComboBox catIDDelCat;
         private ComboBox CatIDEditCat;
         private ComboBox prodIDAddTr;
+        private ComboBox SupIDDelSup;
+        private ComboBox supIDEditSup;
+        private Button delSuplierButton;
+        private Label label27;
+        private Label label28;
+        private Label label29;
+        private Button editSupplierButton;
+        private Button addSupplierButton;
+        private TextBox newNameEdSup;
+        private Label label43;
+        private Label label44;
+        private Label label45;
+        private Label label46;
+        private Label label47;
+        private TextBox supplierNameAddSup;
+        private Label label48;
+        private Label label49;
+        private Button ProductsButton;
+        private Button transcationButton;
+        private Button button8;
+        private Button button5;
+        private Label label26;
+        private TextBox EmailAddSup;
+        private Label label52;
+        private TextBox PhoneAddSup;
+        private Label label51;
+        private TextBox ContactNameAddSup;
+        private Label label50;
+        private TextBox newEmailEdSup;
+        private Label label53;
+        private TextBox newPhoneEdSup;
+        private Label label54;
+        private TextBox newContactEdSup;
+        private Label label55;
+        private TextBox lowStockReportTxtBox;
+        private TextBox catReportTxtBox;
+        private Button lowStockButton;
+        private Button CatReportButton;
+        private Button filterBySupplierButton;
+        private Button filterByCatButton;
+        private TextBox filterBySupTxtBox;
+        private TextBox filterByCatTxtBox;
+        private Label label56;
     }
 }
