@@ -134,6 +134,8 @@
             filterByCatButton = new Button();
             pictureBox4 = new PictureBox();
             tabPage5 = new TabPage();
+            label28 = new Label();
+            label29 = new Label();
             newEmailEdSup = new TextBox();
             label53 = new Label();
             newPhoneEdSup = new TextBox();
@@ -150,8 +152,6 @@
             supIDEditSup = new ComboBox();
             delSuplierButton = new Button();
             label27 = new Label();
-            label28 = new Label();
-            label29 = new Label();
             editSupplierButton = new Button();
             addSupplierButton = new Button();
             newNameEdSup = new TextBox();
@@ -203,7 +203,7 @@
             welcomeTxt.Location = new Point(18, 10);
             welcomeTxt.Margin = new Padding(5, 0, 5, 0);
             welcomeTxt.Name = "welcomeTxt";
-            welcomeTxt.Size = new Size(102, 21);
+            welcomeTxt.Size = new Size(126, 28);
             welcomeTxt.TabIndex = 0;
             welcomeTxt.Text = "welcomeTxt";
             // 
@@ -262,7 +262,7 @@
             availabilityList.Location = new Point(5, 62);
             availabilityList.Margin = new Padding(5, 0, 5, 0);
             availabilityList.Name = "availabilityList";
-            availabilityList.Size = new Size(70, 19);
+            availabilityList.Size = new Size(83, 23);
             availabilityList.TabIndex = 9;
             availabilityList.Text = "Списъци";
             // 
@@ -274,7 +274,7 @@
             label1.Location = new Point(3, 221);
             label1.Margin = new Padding(5, 0, 5, 0);
             label1.Name = "label1";
-            label1.Size = new Size(139, 19);
+            label1.Size = new Size(165, 23);
             label1.TabIndex = 6;
             label1.Text = "Ниски наличности";
             // 
@@ -343,7 +343,7 @@
             lastTransactionsLabel.Location = new Point(5, 384);
             lastTransactionsLabel.Margin = new Padding(5, 0, 5, 0);
             lastTransactionsLabel.Name = "lastTransactionsLabel";
-            lastTransactionsLabel.Size = new Size(165, 19);
+            lastTransactionsLabel.Size = new Size(195, 23);
             lastTransactionsLabel.TabIndex = 4;
             lastTransactionsLabel.Text = "Последни транзакции";
             // 
@@ -422,7 +422,7 @@
             label2.Location = new Point(13, 26);
             label2.Margin = new Padding(5, 0, 5, 0);
             label2.Name = "label2";
-            label2.Size = new Size(402, 21);
+            label2.Size = new Size(460, 28);
             label2.TabIndex = 7;
             label2.Text = "________________________________________________________";
             // 
@@ -435,7 +435,7 @@
             label3.Location = new Point(3, 539);
             label3.Margin = new Padding(5, 0, 5, 0);
             label3.Name = "label3";
-            label3.Size = new Size(402, 21);
+            label3.Size = new Size(460, 28);
             label3.TabIndex = 8;
             label3.Text = "________________________________________________________";
             // 
@@ -447,7 +447,7 @@
             capacityLevel.Location = new Point(18, 567);
             capacityLevel.Margin = new Padding(5, 0, 5, 0);
             capacityLevel.Name = "capacityLevel";
-            capacityLevel.Size = new Size(233, 21);
+            capacityLevel.Size = new Size(291, 28);
             capacityLevel.TabIndex = 2;
             capacityLevel.Text = "Използвано място в склада:";
             // 
@@ -456,9 +456,9 @@
             timeLabel.AutoSize = true;
             timeLabel.BackColor = Color.Transparent;
             timeLabel.ForeColor = SystemColors.Control;
-            timeLabel.Location = new Point(1040, 22);
+            timeLabel.Location = new Point(1018, 13);
             timeLabel.Name = "timeLabel";
-            timeLabel.Size = new Size(58, 17);
+            timeLabel.Size = new Size(80, 23);
             timeLabel.TabIndex = 3;
             timeLabel.Text = "00:00:00";
             timeLabel.Visible = false;
@@ -521,10 +521,10 @@
             tabPage1.Controls.Add(productNameLabel);
             tabPage1.Controls.Add(label8);
             tabPage1.Controls.Add(pictureBox2);
-            tabPage1.Location = new Point(4, 26);
+            tabPage1.Location = new Point(4, 30);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(630, 522);
+            tabPage1.Size = new Size(630, 518);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Продукти";
             // 
@@ -533,7 +533,7 @@
             newProductIDEdit.FormattingEnabled = true;
             newProductIDEdit.Location = new Point(421, 85);
             newProductIDEdit.Name = "newProductIDEdit";
-            newProductIDEdit.Size = new Size(171, 25);
+            newProductIDEdit.Size = new Size(171, 29);
             newProductIDEdit.TabIndex = 60;
             newProductIDEdit.MouseClick += newProductIDEdit_MouseClick;
             // 
@@ -542,7 +542,7 @@
             newSupplierEditPr.FormattingEnabled = true;
             newSupplierEditPr.Location = new Point(421, 264);
             newSupplierEditPr.Name = "newSupplierEditPr";
-            newSupplierEditPr.Size = new Size(171, 25);
+            newSupplierEditPr.Size = new Size(171, 29);
             newSupplierEditPr.TabIndex = 59;
             newSupplierEditPr.MouseClick += newSupplierEditPr_MouseClick;
             // 
@@ -551,7 +551,7 @@
             newCatEditPr.FormattingEnabled = true;
             newCatEditPr.Location = new Point(421, 212);
             newCatEditPr.Name = "newCatEditPr";
-            newCatEditPr.Size = new Size(171, 25);
+            newCatEditPr.Size = new Size(171, 29);
             newCatEditPr.TabIndex = 58;
             newCatEditPr.MouseClick += newCatEditPr_MouseClick;
             // 
@@ -570,7 +570,7 @@
             // 
             newDateEditPr.Location = new Point(421, 440);
             newDateEditPr.Name = "newDateEditPr";
-            newDateEditPr.Size = new Size(171, 25);
+            newDateEditPr.Size = new Size(171, 29);
             newDateEditPr.TabIndex = 56;
             // 
             // label19
@@ -578,7 +578,7 @@
             label19.AutoSize = true;
             label19.Location = new Point(421, 420);
             label19.Name = "label19";
-            label19.Size = new Size(77, 17);
+            label19.Size = new Size(99, 23);
             label19.TabIndex = 55;
             label19.Text = "Нова дата ";
             // 
@@ -586,7 +586,7 @@
             // 
             newPriceEditPr.Location = new Point(421, 382);
             newPriceEditPr.Name = "newPriceEditPr";
-            newPriceEditPr.Size = new Size(171, 25);
+            newPriceEditPr.Size = new Size(171, 29);
             newPriceEditPr.TabIndex = 54;
             // 
             // label17
@@ -594,7 +594,7 @@
             label17.AutoSize = true;
             label17.Location = new Point(421, 365);
             label17.Name = "label17";
-            label17.Size = new Size(75, 17);
+            label17.Size = new Size(96, 23);
             label17.TabIndex = 53;
             label17.Text = "Нова цена";
             // 
@@ -602,7 +602,7 @@
             // 
             newQuantityEditPr.Location = new Point(421, 322);
             newQuantityEditPr.Name = "newQuantityEditPr";
-            newQuantityEditPr.Size = new Size(171, 25);
+            newQuantityEditPr.Size = new Size(171, 29);
             newQuantityEditPr.TabIndex = 52;
             // 
             // label18
@@ -610,7 +610,7 @@
             label18.AutoSize = true;
             label18.Location = new Point(421, 305);
             label18.Name = "label18";
-            label18.Size = new Size(120, 17);
+            label18.Size = new Size(154, 23);
             label18.TabIndex = 51;
             label18.Text = "Ново количество";
             // 
@@ -619,7 +619,7 @@
             label13.AutoSize = true;
             label13.Location = new Point(421, 244);
             label13.Name = "label13";
-            label13.Size = new Size(104, 17);
+            label13.Size = new Size(135, 23);
             label13.TabIndex = 50;
             label13.Text = "Нов доставчик";
             // 
@@ -628,7 +628,7 @@
             label14.AutoSize = true;
             label14.Location = new Point(421, 192);
             label14.Name = "label14";
-            label14.Size = new Size(108, 17);
+            label14.Size = new Size(142, 23);
             label14.TabIndex = 49;
             label14.Text = "Нова категория";
             // 
@@ -636,7 +636,7 @@
             // 
             newNameEditPr.Location = new Point(421, 145);
             newNameEditPr.Name = "newNameEditPr";
-            newNameEditPr.Size = new Size(171, 25);
+            newNameEditPr.Size = new Size(171, 29);
             newNameEditPr.TabIndex = 48;
             // 
             // label15
@@ -644,7 +644,7 @@
             label15.AutoSize = true;
             label15.Location = new Point(421, 125);
             label15.Name = "label15";
-            label15.Size = new Size(146, 17);
+            label15.Size = new Size(189, 23);
             label15.TabIndex = 47;
             label15.Text = "Ново име на продукт";
             // 
@@ -653,7 +653,7 @@
             label16.AutoSize = true;
             label16.Location = new Point(421, 65);
             label16.Name = "label16";
-            label16.Size = new Size(97, 17);
+            label16.Size = new Size(126, 23);
             label16.TabIndex = 46;
             label16.Text = "ID на продукт";
             // 
@@ -662,7 +662,7 @@
             label12.AutoSize = true;
             label12.Location = new Point(421, 23);
             label12.Name = "label12";
-            label12.Size = new Size(164, 17);
+            label12.Size = new Size(214, 23);
             label12.TabIndex = 45;
             label12.Text = "Редактиране на продукт";
             // 
@@ -671,7 +671,7 @@
             label11.AutoSize = true;
             label11.Location = new Point(421, 40);
             label11.Name = "label11";
-            label11.Size = new Size(143, 17);
+            label11.Size = new Size(199, 23);
             label11.TabIndex = 44;
             label11.Text = "___________________________";
             // 
@@ -680,7 +680,7 @@
             newProductIDDelPr.FormattingEnabled = true;
             newProductIDDelPr.Location = new Point(229, 85);
             newProductIDDelPr.Name = "newProductIDDelPr";
-            newProductIDDelPr.Size = new Size(171, 25);
+            newProductIDDelPr.Size = new Size(171, 29);
             newProductIDDelPr.TabIndex = 43;
             newProductIDDelPr.MouseClick += newProductIDDelPr_MouseClick;
             // 
@@ -689,7 +689,7 @@
             SupplierComboBox.FormattingEnabled = true;
             SupplierComboBox.Location = new Point(21, 212);
             SupplierComboBox.Name = "SupplierComboBox";
-            SupplierComboBox.Size = new Size(171, 25);
+            SupplierComboBox.Size = new Size(171, 29);
             SupplierComboBox.TabIndex = 38;
             SupplierComboBox.MouseClick += SupplierComboBox_MouseClick;
             // 
@@ -698,7 +698,7 @@
             categoryComboBox.FormattingEnabled = true;
             categoryComboBox.Location = new Point(21, 145);
             categoryComboBox.Name = "categoryComboBox";
-            categoryComboBox.Size = new Size(171, 25);
+            categoryComboBox.Size = new Size(171, 29);
             categoryComboBox.TabIndex = 37;
             categoryComboBox.Click += categoryComboBox_Click;
             // 
@@ -718,7 +718,7 @@
             label20.AutoSize = true;
             label20.Location = new Point(229, 65);
             label20.Name = "label20";
-            label20.Size = new Size(97, 17);
+            label20.Size = new Size(126, 23);
             label20.TabIndex = 34;
             label20.Text = "ID на продукт";
             // 
@@ -727,7 +727,7 @@
             label21.AutoSize = true;
             label21.Location = new Point(229, 23);
             label21.Name = "label21";
-            label21.Size = new Size(151, 17);
+            label21.Size = new Size(197, 23);
             label21.TabIndex = 33;
             label21.Text = "Изтриване на продукт";
             // 
@@ -736,7 +736,7 @@
             label22.AutoSize = true;
             label22.Location = new Point(229, 40);
             label22.Name = "label22";
-            label22.Size = new Size(143, 17);
+            label22.Size = new Size(199, 23);
             label22.TabIndex = 32;
             label22.Text = "___________________________";
             // 
@@ -755,7 +755,7 @@
             // 
             lastUpdateDTPicker.Location = new Point(21, 382);
             lastUpdateDTPicker.Name = "lastUpdateDTPicker";
-            lastUpdateDTPicker.Size = new Size(171, 25);
+            lastUpdateDTPicker.Size = new Size(171, 29);
             lastUpdateDTPicker.TabIndex = 14;
             // 
             // label9
@@ -763,7 +763,7 @@
             label9.AutoSize = true;
             label9.Location = new Point(5, 356);
             label9.Name = "label9";
-            label9.Size = new Size(160, 17);
+            label9.Size = new Size(210, 23);
             label9.TabIndex = 12;
             label9.Text = "Последна актуализация";
             // 
@@ -771,7 +771,7 @@
             // 
             priceTextBox.Location = new Point(21, 322);
             priceTextBox.Name = "priceTextBox";
-            priceTextBox.Size = new Size(171, 25);
+            priceTextBox.Size = new Size(171, 29);
             priceTextBox.TabIndex = 11;
             // 
             // label10
@@ -779,7 +779,7 @@
             label10.AutoSize = true;
             label10.Location = new Point(21, 302);
             label10.Name = "label10";
-            label10.Size = new Size(41, 17);
+            label10.Size = new Size(52, 23);
             label10.TabIndex = 10;
             label10.Text = "Цена";
             // 
@@ -788,7 +788,7 @@
             label7.AutoSize = true;
             label7.Location = new Point(21, 23);
             label7.Name = "label7";
-            label7.Size = new Size(146, 17);
+            label7.Size = new Size(189, 23);
             label7.TabIndex = 8;
             label7.Text = "Добавяне на продукт";
             // 
@@ -796,7 +796,7 @@
             // 
             QuantityTextBox.Location = new Point(21, 264);
             QuantityTextBox.Name = "QuantityTextBox";
-            QuantityTextBox.Size = new Size(171, 25);
+            QuantityTextBox.Size = new Size(171, 29);
             QuantityTextBox.TabIndex = 7;
             // 
             // label5
@@ -804,7 +804,7 @@
             label5.AutoSize = true;
             label5.Location = new Point(21, 244);
             label5.Name = "label5";
-            label5.Size = new Size(83, 17);
+            label5.Size = new Size(107, 23);
             label5.TabIndex = 6;
             label5.Text = "Количество";
             // 
@@ -813,7 +813,7 @@
             label6.AutoSize = true;
             label6.Location = new Point(21, 192);
             label6.Name = "label6";
-            label6.Size = new Size(111, 17);
+            label6.Size = new Size(144, 23);
             label6.TabIndex = 4;
             label6.Text = "ID на доставчик";
             // 
@@ -822,7 +822,7 @@
             label4.AutoSize = true;
             label4.Location = new Point(21, 125);
             label4.Name = "label4";
-            label4.Size = new Size(108, 17);
+            label4.Size = new Size(142, 23);
             label4.TabIndex = 2;
             label4.Text = "ID на категория";
             // 
@@ -830,7 +830,7 @@
             // 
             productNameTxtBox.Location = new Point(21, 85);
             productNameTxtBox.Name = "productNameTxtBox";
-            productNameTxtBox.Size = new Size(171, 25);
+            productNameTxtBox.Size = new Size(171, 29);
             productNameTxtBox.TabIndex = 1;
             // 
             // productNameLabel
@@ -838,7 +838,7 @@
             productNameLabel.AutoSize = true;
             productNameLabel.Location = new Point(21, 65);
             productNameLabel.Name = "productNameLabel";
-            productNameLabel.Size = new Size(110, 17);
+            productNameLabel.Size = new Size(143, 23);
             productNameLabel.TabIndex = 0;
             productNameLabel.Text = "Име на продукт";
             // 
@@ -847,7 +847,7 @@
             label8.AutoSize = true;
             label8.Location = new Point(21, 40);
             label8.Name = "label8";
-            label8.Size = new Size(143, 17);
+            label8.Size = new Size(199, 23);
             label8.TabIndex = 9;
             label8.Text = "___________________________";
             // 
@@ -881,10 +881,10 @@
             tabPage2.Controls.Add(label41);
             tabPage2.Controls.Add(label42);
             tabPage2.Controls.Add(pictureBox1);
-            tabPage2.Location = new Point(4, 24);
+            tabPage2.Location = new Point(4, 30);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(630, 524);
+            tabPage2.Size = new Size(630, 518);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Категории";
             tabPage2.UseVisualStyleBackColor = true;
@@ -892,24 +892,25 @@
             // catIDDelCat
             // 
             catIDDelCat.FormattingEnabled = true;
-            catIDDelCat.Location = new Point(411, 97);
+            catIDDelCat.Location = new Point(419, 222);
             catIDDelCat.Name = "catIDDelCat";
-            catIDDelCat.Size = new Size(171, 25);
+            catIDDelCat.Size = new Size(171, 29);
             catIDDelCat.TabIndex = 75;
             catIDDelCat.MouseClick += catIDDelCat_MouseClick;
             // 
             // CatIDEditCat
             // 
             CatIDEditCat.FormattingEnabled = true;
-            CatIDEditCat.Location = new Point(219, 97);
+            CatIDEditCat.Location = new Point(18, 77);
             CatIDEditCat.Name = "CatIDEditCat";
-            CatIDEditCat.Size = new Size(171, 25);
+            CatIDEditCat.Size = new Size(171, 29);
             CatIDEditCat.TabIndex = 74;
+            CatIDEditCat.SelectedIndexChanged += CatIDEditCat_SelectedIndexChanged;
             CatIDEditCat.MouseClick += CatIDEditCat_MouseClick;
             // 
             // delCatButton
             // 
-            delCatButton.Location = new Point(442, 133);
+            delCatButton.Location = new Point(450, 258);
             delCatButton.Margin = new Padding(5, 4, 5, 4);
             delCatButton.Name = "delCatButton";
             delCatButton.Size = new Size(111, 30);
@@ -921,33 +922,33 @@
             // label23
             // 
             label23.AutoSize = true;
-            label23.Location = new Point(411, 71);
+            label23.Location = new Point(419, 196);
             label23.Name = "label23";
-            label23.Size = new Size(108, 17);
+            label23.Size = new Size(142, 23);
             label23.TabIndex = 71;
             label23.Text = "ID на категория";
             // 
             // label24
             // 
             label24.AutoSize = true;
-            label24.Location = new Point(411, 35);
+            label24.Location = new Point(419, 160);
             label24.Name = "label24";
-            label24.Size = new Size(162, 17);
+            label24.Size = new Size(213, 23);
             label24.TabIndex = 70;
             label24.Text = "Изтриване на категория";
             // 
             // label25
             // 
             label25.AutoSize = true;
-            label25.Location = new Point(411, 46);
+            label25.Location = new Point(419, 171);
             label25.Name = "label25";
-            label25.Size = new Size(143, 17);
+            label25.Size = new Size(199, 23);
             label25.TabIndex = 69;
             label25.Text = "___________________________";
             // 
             // editCatButton
             // 
-            editCatButton.Location = new Point(244, 187);
+            editCatButton.Location = new Point(43, 167);
             editCatButton.Margin = new Padding(5, 4, 5, 4);
             editCatButton.Name = "editCatButton";
             editCatButton.Size = new Size(129, 30);
@@ -958,7 +959,7 @@
             // 
             // addCatButton
             // 
-            addCatButton.Location = new Point(58, 129);
+            addCatButton.Location = new Point(448, 112);
             addCatButton.Margin = new Padding(5, 4, 5, 4);
             addCatButton.Name = "addCatButton";
             addCatButton.Size = new Size(101, 30);
@@ -969,78 +970,78 @@
             // 
             // newNameEditCat
             // 
-            newNameEditCat.Location = new Point(219, 151);
+            newNameEditCat.Location = new Point(18, 131);
             newNameEditCat.Name = "newNameEditCat";
-            newNameEditCat.Size = new Size(171, 25);
+            newNameEditCat.Size = new Size(171, 29);
             newNameEditCat.TabIndex = 57;
             // 
             // label31
             // 
             label31.AutoSize = true;
-            label31.Location = new Point(219, 131);
+            label31.Location = new Point(14, 109);
             label31.Name = "label31";
-            label31.Size = new Size(157, 17);
+            label31.Size = new Size(205, 23);
             label31.TabIndex = 56;
             label31.Text = "Ново име на категория";
             // 
             // label32
             // 
             label32.AutoSize = true;
-            label32.Location = new Point(219, 71);
+            label32.Location = new Point(18, 51);
             label32.Name = "label32";
-            label32.Size = new Size(108, 17);
+            label32.Size = new Size(142, 23);
             label32.TabIndex = 54;
             label32.Text = "ID на категория";
             // 
             // label33
             // 
             label33.AutoSize = true;
-            label33.Location = new Point(215, 38);
+            label33.Location = new Point(14, 18);
             label33.Name = "label33";
-            label33.Size = new Size(175, 17);
+            label33.Size = new Size(230, 23);
             label33.TabIndex = 53;
             label33.Text = "Редактиране на категория";
             // 
             // label34
             // 
             label34.AutoSize = true;
-            label34.Location = new Point(230, 46);
+            label34.Location = new Point(20, 28);
             label34.Name = "label34";
-            label34.Size = new Size(143, 17);
+            label34.Size = new Size(199, 23);
             label34.TabIndex = 52;
             label34.Text = "___________________________";
             // 
             // label37
             // 
             label37.AutoSize = true;
-            label37.Location = new Point(29, 35);
+            label37.Location = new Point(419, 18);
             label37.Name = "label37";
-            label37.Size = new Size(157, 17);
+            label37.Size = new Size(205, 23);
             label37.TabIndex = 46;
             label37.Text = "Добавяне на категория";
             // 
             // CatNameAddCat
             // 
-            CatNameAddCat.Location = new Point(29, 97);
+            CatNameAddCat.Location = new Point(419, 80);
             CatNameAddCat.Name = "CatNameAddCat";
-            CatNameAddCat.Size = new Size(171, 25);
+            CatNameAddCat.Size = new Size(171, 29);
             CatNameAddCat.TabIndex = 38;
             // 
             // label41
             // 
             label41.AutoSize = true;
-            label41.Location = new Point(29, 71);
+            label41.Location = new Point(419, 54);
             label41.Name = "label41";
-            label41.Size = new Size(121, 17);
+            label41.Size = new Size(159, 23);
             label41.TabIndex = 37;
             label41.Text = "Име на категория";
             // 
             // label42
             // 
             label42.AutoSize = true;
-            label42.Location = new Point(29, 46);
+            label42.Location = new Point(419, 29);
             label42.Name = "label42";
-            label42.Size = new Size(143, 17);
+            label42.Size = new Size(199, 23);
             label42.TabIndex = 47;
             label42.Text = "___________________________";
             // 
@@ -1068,10 +1069,10 @@
             tabPage3.Controls.Add(label35);
             tabPage3.Controls.Add(label36);
             tabPage3.Controls.Add(pictureBox3);
-            tabPage3.Location = new Point(4, 24);
+            tabPage3.Location = new Point(4, 29);
             tabPage3.Name = "tabPage3";
             tabPage3.Padding = new Padding(3);
-            tabPage3.Size = new Size(630, 524);
+            tabPage3.Size = new Size(630, 519);
             tabPage3.TabIndex = 2;
             tabPage3.Text = "Транзакции";
             tabPage3.UseVisualStyleBackColor = true;
@@ -1081,7 +1082,7 @@
             prodIDAddTr.FormattingEnabled = true;
             prodIDAddTr.Location = new Point(28, 99);
             prodIDAddTr.Name = "prodIDAddTr";
-            prodIDAddTr.Size = new Size(171, 25);
+            prodIDAddTr.Size = new Size(171, 29);
             prodIDAddTr.TabIndex = 88;
             prodIDAddTr.MouseClick += prodIDAddTr_MouseClick;
             // 
@@ -1091,7 +1092,7 @@
             transTypeAddTr.Items.AddRange(new object[] { "Входяща", "Изходяща" });
             transTypeAddTr.Location = new Point(28, 160);
             transTypeAddTr.Name = "transTypeAddTr";
-            transTypeAddTr.Size = new Size(171, 25);
+            transTypeAddTr.Size = new Size(171, 29);
             transTypeAddTr.TabIndex = 87;
             // 
             // label40
@@ -1099,7 +1100,7 @@
             label40.AutoSize = true;
             label40.Location = new Point(28, 240);
             label40.Name = "label40";
-            label40.Size = new Size(38, 17);
+            label40.Size = new Size(49, 23);
             label40.TabIndex = 86;
             label40.Text = "Дата";
             // 
@@ -1107,14 +1108,14 @@
             // 
             dateAddTr.Location = new Point(28, 266);
             dateAddTr.Name = "dateAddTr";
-            dateAddTr.Size = new Size(171, 25);
+            dateAddTr.Size = new Size(171, 29);
             dateAddTr.TabIndex = 85;
             // 
             // quantityAddTr
             // 
             quantityAddTr.Location = new Point(28, 208);
             quantityAddTr.Name = "quantityAddTr";
-            quantityAddTr.Size = new Size(171, 25);
+            quantityAddTr.Size = new Size(171, 29);
             quantityAddTr.TabIndex = 84;
             // 
             // label39
@@ -1122,7 +1123,7 @@
             label39.AutoSize = true;
             label39.Location = new Point(28, 188);
             label39.Name = "label39";
-            label39.Size = new Size(83, 17);
+            label39.Size = new Size(107, 23);
             label39.TabIndex = 83;
             label39.Text = "Количество";
             // 
@@ -1131,7 +1132,7 @@
             label38.AutoSize = true;
             label38.Location = new Point(28, 133);
             label38.Name = "label38";
-            label38.Size = new Size(139, 17);
+            label38.Size = new Size(183, 23);
             label38.TabIndex = 81;
             label38.Text = "Тип на транзакцията";
             // 
@@ -1151,7 +1152,7 @@
             label30.AutoSize = true;
             label30.Location = new Point(28, 31);
             label30.Name = "label30";
-            label30.Size = new Size(166, 17);
+            label30.Size = new Size(217, 23);
             label30.TabIndex = 72;
             label30.Text = "Добавяне на транзакция";
             // 
@@ -1160,7 +1161,7 @@
             label35.AutoSize = true;
             label35.Location = new Point(28, 73);
             label35.Name = "label35";
-            label35.Size = new Size(97, 17);
+            label35.Size = new Size(126, 23);
             label35.TabIndex = 69;
             label35.Text = "ID на продукт";
             // 
@@ -1169,7 +1170,7 @@
             label36.AutoSize = true;
             label36.Location = new Point(28, 48);
             label36.Name = "label36";
-            label36.Size = new Size(143, 17);
+            label36.Size = new Size(199, 23);
             label36.TabIndex = 73;
             label36.Text = "___________________________";
             // 
@@ -1190,10 +1191,10 @@
             tabPage4.Controls.Add(filterBySupplierButton);
             tabPage4.Controls.Add(filterByCatButton);
             tabPage4.Controls.Add(pictureBox4);
-            tabPage4.Location = new Point(4, 24);
+            tabPage4.Location = new Point(4, 29);
             tabPage4.Name = "tabPage4";
             tabPage4.Padding = new Padding(3);
-            tabPage4.Size = new Size(630, 524);
+            tabPage4.Size = new Size(630, 519);
             tabPage4.TabIndex = 3;
             tabPage4.Text = "Филтриране";
             tabPage4.UseVisualStyleBackColor = true;
@@ -1206,7 +1207,7 @@
             filterBySupTxtBox.Name = "filterBySupTxtBox";
             filterBySupTxtBox.ReadOnly = true;
             filterBySupTxtBox.ScrollBars = ScrollBars.Vertical;
-            filterBySupTxtBox.Size = new Size(270, 351);
+            filterBySupTxtBox.Size = new Size(270, 348);
             filterBySupTxtBox.TabIndex = 13;
             // 
             // filterByCatTxtBox
@@ -1217,7 +1218,7 @@
             filterByCatTxtBox.Name = "filterByCatTxtBox";
             filterByCatTxtBox.ReadOnly = true;
             filterByCatTxtBox.ScrollBars = ScrollBars.Vertical;
-            filterByCatTxtBox.Size = new Size(270, 351);
+            filterByCatTxtBox.Size = new Size(270, 348);
             filterByCatTxtBox.TabIndex = 12;
             // 
             // filterBySupplierButton
@@ -1252,6 +1253,8 @@
             // 
             // tabPage5
             // 
+            tabPage5.Controls.Add(label28);
+            tabPage5.Controls.Add(label29);
             tabPage5.Controls.Add(newEmailEdSup);
             tabPage5.Controls.Add(label53);
             tabPage5.Controls.Add(newPhoneEdSup);
@@ -1268,8 +1271,6 @@
             tabPage5.Controls.Add(supIDEditSup);
             tabPage5.Controls.Add(delSuplierButton);
             tabPage5.Controls.Add(label27);
-            tabPage5.Controls.Add(label28);
-            tabPage5.Controls.Add(label29);
             tabPage5.Controls.Add(editSupplierButton);
             tabPage5.Controls.Add(addSupplierButton);
             tabPage5.Controls.Add(newNameEdSup);
@@ -1282,19 +1283,38 @@
             tabPage5.Controls.Add(label48);
             tabPage5.Controls.Add(label49);
             tabPage5.Controls.Add(pictureBox5);
-            tabPage5.Location = new Point(4, 26);
+            tabPage5.Location = new Point(4, 29);
             tabPage5.Name = "tabPage5";
             tabPage5.Padding = new Padding(3);
-            tabPage5.Size = new Size(630, 522);
+            tabPage5.Size = new Size(630, 519);
             tabPage5.TabIndex = 4;
             tabPage5.Text = "Доставчици";
             tabPage5.UseVisualStyleBackColor = true;
+            tabPage5.Click += tabPage5_Click;
+            // 
+            // label28
+            // 
+            label28.AutoSize = true;
+            label28.Location = new Point(33, 363);
+            label28.Name = "label28";
+            label28.Size = new Size(205, 23);
+            label28.TabIndex = 88;
+            label28.Text = "Изтриване на достачик";
+            // 
+            // label29
+            // 
+            label29.AutoSize = true;
+            label29.Location = new Point(35, 373);
+            label29.Name = "label29";
+            label29.Size = new Size(199, 23);
+            label29.TabIndex = 87;
+            label29.Text = "___________________________";
             // 
             // newEmailEdSup
             // 
-            newEmailEdSup.Location = new Point(421, 340);
+            newEmailEdSup.Location = new Point(401, 340);
             newEmailEdSup.Name = "newEmailEdSup";
-            newEmailEdSup.Size = new Size(171, 25);
+            newEmailEdSup.Size = new Size(171, 29);
             newEmailEdSup.TabIndex = 104;
             // 
             // label53
@@ -1302,15 +1322,15 @@
             label53.AutoSize = true;
             label53.Location = new Point(421, 321);
             label53.Name = "label53";
-            label53.Size = new Size(81, 17);
+            label53.Size = new Size(104, 23);
             label53.TabIndex = 103;
             label53.Text = "Нов Имейл";
             // 
             // newPhoneEdSup
             // 
-            newPhoneEdSup.Location = new Point(421, 279);
+            newPhoneEdSup.Location = new Point(401, 279);
             newPhoneEdSup.Name = "newPhoneEdSup";
-            newPhoneEdSup.Size = new Size(171, 25);
+            newPhoneEdSup.Size = new Size(171, 29);
             newPhoneEdSup.TabIndex = 102;
             // 
             // label54
@@ -1318,23 +1338,23 @@
             label54.AutoSize = true;
             label54.Location = new Point(421, 253);
             label54.Name = "label54";
-            label54.Size = new Size(93, 17);
+            label54.Size = new Size(118, 23);
             label54.TabIndex = 101;
             label54.Text = "Нов Телефон";
             // 
             // newContactEdSup
             // 
-            newContactEdSup.Location = new Point(421, 217);
+            newContactEdSup.Location = new Point(401, 217);
             newContactEdSup.Name = "newContactEdSup";
-            newContactEdSup.Size = new Size(171, 25);
+            newContactEdSup.Size = new Size(171, 29);
             newContactEdSup.TabIndex = 100;
             // 
             // label55
             // 
             label55.AutoSize = true;
-            label55.Location = new Point(421, 197);
+            label55.Location = new Point(401, 197);
             label55.Name = "label55";
-            label55.Size = new Size(147, 17);
+            label55.Size = new Size(190, 23);
             label55.TabIndex = 99;
             label55.Text = "Ново Контактно лице";
             // 
@@ -1342,7 +1362,7 @@
             // 
             EmailAddSup.Location = new Point(33, 279);
             EmailAddSup.Name = "EmailAddSup";
-            EmailAddSup.Size = new Size(171, 25);
+            EmailAddSup.Size = new Size(171, 29);
             EmailAddSup.TabIndex = 98;
             // 
             // label52
@@ -1350,7 +1370,7 @@
             label52.AutoSize = true;
             label52.Location = new Point(33, 259);
             label52.Name = "label52";
-            label52.Size = new Size(51, 17);
+            label52.Size = new Size(66, 23);
             label52.TabIndex = 97;
             label52.Text = "Имейл";
             // 
@@ -1358,7 +1378,7 @@
             // 
             PhoneAddSup.Location = new Point(33, 217);
             PhoneAddSup.Name = "PhoneAddSup";
-            PhoneAddSup.Size = new Size(171, 25);
+            PhoneAddSup.Size = new Size(171, 29);
             PhoneAddSup.TabIndex = 96;
             // 
             // label51
@@ -1366,7 +1386,7 @@
             label51.AutoSize = true;
             label51.Location = new Point(33, 197);
             label51.Name = "label51";
-            label51.Size = new Size(63, 17);
+            label51.Size = new Size(80, 23);
             label51.TabIndex = 95;
             label51.Text = "Телефон";
             // 
@@ -1374,7 +1394,7 @@
             // 
             ContactNameAddSup.Location = new Point(33, 161);
             ContactNameAddSup.Name = "ContactNameAddSup";
-            ContactNameAddSup.Size = new Size(171, 25);
+            ContactNameAddSup.Size = new Size(171, 29);
             ContactNameAddSup.TabIndex = 94;
             // 
             // label50
@@ -1382,29 +1402,29 @@
             label50.AutoSize = true;
             label50.Location = new Point(33, 141);
             label50.Name = "label50";
-            label50.Size = new Size(109, 17);
+            label50.Size = new Size(142, 23);
             label50.TabIndex = 93;
             label50.Text = "Контактно лице";
             // 
             // SupIDDelSup
             // 
             SupIDDelSup.FormattingEnabled = true;
-            SupIDDelSup.Location = new Point(230, 102);
+            SupIDDelSup.Location = new Point(35, 420);
             SupIDDelSup.Name = "SupIDDelSup";
-            SupIDDelSup.Size = new Size(171, 25);
+            SupIDDelSup.Size = new Size(171, 29);
             SupIDDelSup.TabIndex = 92;
             // 
             // supIDEditSup
             // 
             supIDEditSup.FormattingEnabled = true;
-            supIDEditSup.Location = new Point(421, 102);
+            supIDEditSup.Location = new Point(401, 102);
             supIDEditSup.Name = "supIDEditSup";
-            supIDEditSup.Size = new Size(171, 25);
+            supIDEditSup.Size = new Size(171, 29);
             supIDEditSup.TabIndex = 91;
             // 
             // delSuplierButton
             // 
-            delSuplierButton.Location = new Point(254, 134);
+            delSuplierButton.Location = new Point(59, 452);
             delSuplierButton.Margin = new Padding(5, 4, 5, 4);
             delSuplierButton.Name = "delSuplierButton";
             delSuplierButton.Size = new Size(111, 30);
@@ -1416,33 +1436,15 @@
             // label27
             // 
             label27.AutoSize = true;
-            label27.Location = new Point(232, 81);
+            label27.Location = new Point(37, 399);
             label27.Name = "label27";
-            label27.Size = new Size(111, 17);
+            label27.Size = new Size(144, 23);
             label27.TabIndex = 89;
             label27.Text = "ID на доставчик";
             // 
-            // label28
-            // 
-            label28.AutoSize = true;
-            label28.Location = new Point(230, 48);
-            label28.Name = "label28";
-            label28.Size = new Size(157, 17);
-            label28.TabIndex = 88;
-            label28.Text = "Изтриване на достачик";
-            // 
-            // label29
-            // 
-            label29.AutoSize = true;
-            label29.Location = new Point(230, 55);
-            label29.Name = "label29";
-            label29.Size = new Size(143, 17);
-            label29.TabIndex = 87;
-            label29.Text = "___________________________";
-            // 
             // editSupplierButton
             // 
-            editSupplierButton.Location = new Point(448, 376);
+            editSupplierButton.Location = new Point(428, 376);
             editSupplierButton.Margin = new Padding(5, 4, 5, 4);
             editSupplierButton.Name = "editSupplierButton";
             editSupplierButton.Size = new Size(129, 30);
@@ -1464,44 +1466,44 @@
             // 
             // newNameEdSup
             // 
-            newNameEdSup.Location = new Point(421, 161);
+            newNameEdSup.Location = new Point(401, 161);
             newNameEdSup.Name = "newNameEdSup";
-            newNameEdSup.Size = new Size(171, 25);
+            newNameEdSup.Size = new Size(171, 29);
             newNameEdSup.TabIndex = 85;
             // 
             // label43
             // 
             label43.AutoSize = true;
-            label43.Location = new Point(421, 141);
+            label43.Location = new Point(401, 141);
             label43.Name = "label43";
-            label43.Size = new Size(160, 17);
+            label43.Size = new Size(207, 23);
             label43.TabIndex = 84;
             label43.Text = "Ново име на доставчик";
             // 
             // label44
             // 
             label44.AutoSize = true;
-            label44.Location = new Point(421, 81);
+            label44.Location = new Point(401, 81);
             label44.Name = "label44";
-            label44.Size = new Size(111, 17);
+            label44.Size = new Size(144, 23);
             label44.TabIndex = 83;
             label44.Text = "ID на доставчик";
             // 
             // label45
             // 
             label45.AutoSize = true;
-            label45.Location = new Point(406, 39);
+            label45.Location = new Point(386, 39);
             label45.Name = "label45";
-            label45.Size = new Size(178, 17);
+            label45.Size = new Size(232, 23);
             label45.TabIndex = 82;
             label45.Text = "Редактиране на доставчик";
             // 
             // label46
             // 
             label46.AutoSize = true;
-            label46.Location = new Point(406, 56);
+            label46.Location = new Point(386, 56);
             label46.Name = "label46";
-            label46.Size = new Size(143, 17);
+            label46.Size = new Size(199, 23);
             label46.TabIndex = 81;
             label46.Text = "___________________________";
             // 
@@ -1510,7 +1512,7 @@
             label47.AutoSize = true;
             label47.Location = new Point(33, 40);
             label47.Name = "label47";
-            label47.Size = new Size(160, 17);
+            label47.Size = new Size(207, 23);
             label47.TabIndex = 79;
             label47.Text = "Добавяне на доставчик";
             // 
@@ -1518,7 +1520,7 @@
             // 
             supplierNameAddSup.Location = new Point(33, 102);
             supplierNameAddSup.Name = "supplierNameAddSup";
-            supplierNameAddSup.Size = new Size(171, 25);
+            supplierNameAddSup.Size = new Size(171, 29);
             supplierNameAddSup.TabIndex = 77;
             // 
             // label48
@@ -1526,7 +1528,7 @@
             label48.AutoSize = true;
             label48.Location = new Point(33, 82);
             label48.Name = "label48";
-            label48.Size = new Size(124, 17);
+            label48.Size = new Size(161, 23);
             label48.TabIndex = 76;
             label48.Text = "Име на доставчик";
             // 
@@ -1535,7 +1537,7 @@
             label49.AutoSize = true;
             label49.Location = new Point(33, 57);
             label49.Name = "label49";
-            label49.Size = new Size(143, 17);
+            label49.Size = new Size(199, 23);
             label49.TabIndex = 80;
             label49.Text = "___________________________";
             // 
@@ -1556,10 +1558,10 @@
             tabPage6.Controls.Add(lowStockButton);
             tabPage6.Controls.Add(CatReportButton);
             tabPage6.Controls.Add(pictureBox6);
-            tabPage6.Location = new Point(4, 24);
+            tabPage6.Location = new Point(4, 29);
             tabPage6.Name = "tabPage6";
             tabPage6.Padding = new Padding(3);
-            tabPage6.Size = new Size(630, 524);
+            tabPage6.Size = new Size(630, 519);
             tabPage6.TabIndex = 5;
             tabPage6.Text = "Отчети";
             tabPage6.UseVisualStyleBackColor = true;
@@ -1668,13 +1670,13 @@
             label26.ForeColor = SystemColors.Control;
             label26.Location = new Point(469, 591);
             label26.Name = "label26";
-            label26.Size = new Size(70, 19);
+            label26.Size = new Size(83, 23);
             label26.TabIndex = 41;
             label26.Text = "Списъци";
             // 
             // MainForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 17F);
+            AutoScaleDimensions = new SizeF(10F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             BackColor = Color.WhiteSmoke;

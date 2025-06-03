@@ -21,7 +21,7 @@ namespace FormsApplication
         private void ProductsForm_Load(object sender, EventArgs e)
         {
             productService = new ProductService();
-            PrintAllProducts();
+            PrintAllProducts();            
         }
         private void PrintAllProducts()
         {

@@ -97,7 +97,7 @@ namespace FormsApplication
         {
             int used = productService.GetTotalProductCount();
             capacityLevel.Text = $"Използвано място в склада: {used}/{productsBar.Maximum}";
-            productsBar.Value = Math.Min(used, productsBar.Maximum); 
+            productsBar.Value = Math.Min(used, productsBar.Maximum);
         }
         private void UpdateComboBoxes()
         {
@@ -107,7 +107,6 @@ namespace FormsApplication
 
             FillComboBoxes(products, categories, suppliers);
         }
-
 
         //Top Right Timer
         private void Timer_Tick(object sender, EventArgs e)
@@ -236,7 +235,6 @@ namespace FormsApplication
             CategoriesForm c = new CategoriesForm();
             c.Show();
         } // categoriesForm
-
         private void button7_Click(object sender, EventArgs e)
         {
             TransactionsForm t = new TransactionsForm();
@@ -385,6 +383,7 @@ namespace FormsApplication
             PopulateComboBoxWithIds(catIDDelCat, categories, p => p.CategoryId);
             PopulateComboBoxWithIds(CatIDEditCat, categories, p => p.CategoryId);
         }
+
         //Design
         private void ApplyWarehouseBlueTheme()
         {
@@ -421,7 +420,6 @@ namespace FormsApplication
             StyleButton(button5);
             StyleButton(EditPrButton);
         }
-
         private void StyleButton(Button btn)
         {
             btn.BackColor = ColorTranslator.FromHtml("#415A77");
@@ -574,7 +572,8 @@ namespace FormsApplication
                 if (newNameEditCat.Text == null) { MessageBox.Show("Моля напишете име на категория."); return; }
                 categoryService.EditCategory(newCatId, newCatName);
                 UpdateComboBoxes();
-
+                UpdateDashboardData();
+                MessageBox.Show("Категорията бе редактирана успешно.");
             }
             catch (FormatException)
             {
@@ -598,7 +597,7 @@ namespace FormsApplication
                 categoryService.DeleteCategory(catId);
                 MessageBox.Show("Категорията е изтрита успешно!");
                 UpdateComboBoxes();
-
+                UpdateDashboardData();
             }
             catch (FormatException)
             {
@@ -609,6 +608,7 @@ namespace FormsApplication
                 MessageBox.Show("Грешка: " + ex.Message);
             }
         }
+
         //Transactionbutton
         private void addTransButton_Click(object sender, EventArgs e)
         {
@@ -641,6 +641,7 @@ namespace FormsApplication
             UpdateDashboardData();
             UpdateWarehouseCapacity();
         }
+
         //Supplierbuttons
         private void delSuplierButton_Click(object sender, EventArgs e)
         {
@@ -651,7 +652,7 @@ namespace FormsApplication
             supplierService.DeleteSupplier(supplierId);
             MessageBox.Show("Успешно изтрихте доставчика.");
             UpdateComboBoxes();
-
+            UpdateDashboardData();
         }
 
         private void addSupplierButton_Click(object sender, EventArgs e)
@@ -679,7 +680,7 @@ namespace FormsApplication
             supplierService.AddSupplier(supplierName, contactName, phoneNumber, email);
             MessageBox.Show("Доставчикът беше добавен.");
             UpdateComboBoxes();
-
+            UpdateDashboardData();
         }
 
         private void editSupplierButton_Click(object sender, EventArgs e)
@@ -711,9 +712,20 @@ namespace FormsApplication
             {
                 MessageBox.Show("Моля напишете имайл на контакт."); return;
             }
-            supplierService.EditSupplier(supplierId,newSupplierName,newContactName,newPhoneNumber,newEmail);
+            supplierService.EditSupplier(supplierId, newSupplierName, newContactName, newPhoneNumber, newEmail);
             MessageBox.Show("Доставчикът бе редактиран успешно.");
             UpdateComboBoxes();
+            UpdateDashboardData();
+
+        }
+
+        private void tabPage5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CatIDEditCat_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
         }
     }
