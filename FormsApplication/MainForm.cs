@@ -223,6 +223,16 @@ namespace FormsApplication
         {
             PrintAllProducts();
         }
+        private void newProductIDEdit_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int num = int.Parse(newProductIDEdit.Text);
+            var products = productService.GetProductById(num);
+            newNameEditPr.Text = products.Name;
+            newCatEditPr.Text = products.CategoryId.ToString();
+            newSupplierEditPr.Text = products.SupplierId.ToString();
+            newPriceEditPr.Text = products.Price.ToString();
+            newQuantityEditPr.Text = products.Quantity.ToString();
+        }
 
         //Button events for opening forms for each list ( Products, Category, Transactions, Suppliers )
         private void ProductsButton_Click(object sender, EventArgs e)
@@ -726,7 +736,20 @@ namespace FormsApplication
 
         private void CatIDEditCat_SelectedIndexChanged(object sender, EventArgs e)
         {
+            int num = int.Parse(CatIDEditCat.Text);
+            var categories = categoryService.GetCategoryById(num);
+            newNameEditCat.Text = categories.Name;
+        }
 
+        private void supIDEditSup_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int num = int.Parse(supIDEditSup.Text);
+            var suppliers = supplierService.GetSupplierById(num);
+            newNameEdSup.Text = suppliers.Name;
+            newContactEdSup.Text = suppliers.ContactName;
+            newEmailEdSup.Text = suppliers.Email;
+            newPhoneEdSup.Text = suppliers.Phone;
+            newContactEdSup.Text = suppliers.ContactName;
         }
     }
 }
