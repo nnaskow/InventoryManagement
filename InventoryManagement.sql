@@ -63,3 +63,6 @@ INSERT INTO transactions (product_id, transaction_type, quantity, transaction_da
 (3, 'OUT', 20, '2025-04-04'),
 (4, 'OUT', 10, '2025-04-05'),
 (5, 'IN', 50, '2025-04-05');
+
+DBCC CHECKIDENT ('suppliers', NORESEED);
+DBCC CHECKIDENT ('suppliers', RESEED, 8);

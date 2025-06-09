@@ -95,6 +95,35 @@ namespace InventoryManagement.Services
                     .ToList();
             }
         }
+        public void RemoveTransaction(int transactionId)
+        {
+            using (var _context = new InventoryManagementContext())
+            {
+                var transaction = _context.Transactions
+                    .Include(t => t.Product)
+                    .FirstOrDefault(t => t.TransactionId == transactionId);
+
+                if (transaction == null)
+                {
+                    Console.WriteLine("Транзакцията не е намерена.");
+                    return;
+                }
+
+                var product = transaction.Product;
+
+                if (transaction.TransactionType == "IN")
+                {
+                    product.Quantity -= transaction.Quantity;
+                }
+                else if (transaction.TransactionType == "OUT")
+                {
+                    product.Quantity += transaction.Quantity;
+                }
+
+                _context.Transactions.Remove(transaction);
+                _context.SaveChanges();
+            }
+        }
 
     }
 }

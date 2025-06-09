@@ -8,7 +8,7 @@ namespace InventoryManagement.Services
 {
     public class CategoryService
     {
-      
+        
         public void AddCategory(string name)
         {
             var category = new Category
