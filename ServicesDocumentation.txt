@@ -1,0 +1,59 @@
+// CategoryService
+
+- AddCategory – Добавя нова категория по подадено име.
+
+- GetAllCategories – Връща списък с всички категории.
+
+- GetCategoryById – Връща конкретна категория по ID.
+
+- EditCategory – Променя името на съществуваща категория.
+
+- DeleteCategory – Изтрива категория по ID.
+
+- GetAllCategoryIds – Връща списък с ID-та на всички категории.
+
+// ProductService
+
+- AddProduct – Добавя нов продукт с име, категория, доставчик, количество, цена и дата.
+
+- GetAllProducts – Връща списък с всички продукти, включително категории и доставчици.
+
+- GetProductById – Връща конкретен продукт по ID, включително категория и доставчик.
+
+- EditProduct – Редактира информация за продукт по ID.
+
+- DeleteProduct – Изтрива продукт и свързаните транзакции. Актуализира ID броенето.
+
+- GetLastInsertedProductId – Връща ID на последно добавения продукт.
+
+- GetTotalProductCount – Връща общия брой налични продукти по количество.
+
+- GetLowStockProducts – Връща продукти с количество под зададен праг.
+
+// SupplierService
+
+- AddSupplier – Добавя нов доставчик с име, контакт, телефон и имейл.
+
+- ListSuppliers – Извежда информация за всички доставчици в конзолата.
+
+- GetSupplierById – Връща доставчик по ID.
+
+- EditSupplier – Редактира данни на доставчик по ID.
+
+- DeleteSupplier – Изтрива доставчик по ID.
+
+- GetAllSuppliers – Връща списък с всички доставчици.
+
+// TransactionService
+
+- AddTransaction – Добавя нова транзакция и променя количеството на продукта.
+
+- AddTransactionForINEntriesOnly – Добавя входяща транзакция без да променя количеството.
+
+- GetAllTransactions – Връща всички транзакции с информация за продукта.
+
+- GetTransactionById – Връща транзакция по ID.
+
+- GetLastTransactions – Връща последните N транзакции по дата.
+
+- RemoveTransaction – Премахва транзакция и възстановява количеството на продукта.
