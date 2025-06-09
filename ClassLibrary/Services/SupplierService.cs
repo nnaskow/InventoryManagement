@@ -7,9 +7,18 @@ using System.Threading.Tasks;
 
 namespace InventoryManagement.Services
 {
+    /// <summary>
+    /// Услуга за управление на доставчици в системата за инвентаризация.
+    /// </summary>
     public class SupplierService
     {
-
+        /// <summary>
+        /// Добавя нов доставчик в базата данни.
+        /// </summary>
+        /// <param name="name">Име на фирмата доставчик.</param>
+        /// <param name="contactName">Име на контактното лице.</param>
+        /// <param name="phone">Телефонен номер.</param>
+        /// <param name="email">Имейл адрес.</param>
         public void AddSupplier(string name, string contactName, string phone, string email)
         {
             var supplier = new Supplier
@@ -27,6 +36,9 @@ namespace InventoryManagement.Services
             }
         }
 
+        /// <summary>
+        /// Извежда в конзолата списък с всички доставчици.
+        /// </summary>
         public void ListSuppliers()
         {
             using (var _context = new InventoryManagementContext())
@@ -40,6 +52,11 @@ namespace InventoryManagement.Services
             }
         }
 
+        /// <summary>
+        /// Връща доставчик по зададен идентификатор.
+        /// </summary>
+        /// <param name="id">ID на доставчика.</param>
+        /// <returns>Обект Supplier или null, ако не е намерен.</returns>
         public Supplier GetSupplierById(int id)
         {
             using (var _context = new InventoryManagementContext())
@@ -48,6 +65,14 @@ namespace InventoryManagement.Services
             }
         }
 
+        /// <summary>
+        /// Редактира съществуващ доставчик по зададено ID.
+        /// </summary>
+        /// <param name="id">ID на доставчика.</param>
+        /// <param name="name">Ново име на фирмата.</param>
+        /// <param name="contactName">Ново контактно лице.</param>
+        /// <param name="phone">Нов телефон.</param>
+        /// <param name="email">Нов имейл.</param>
         public void EditSupplier(int id, string name, string contactName, string phone, string email)
         {
             using (var _context = new InventoryManagementContext())
@@ -69,6 +94,10 @@ namespace InventoryManagement.Services
             }
         }
 
+        /// <summary>
+        /// Изтрива доставчик по зададено ID.
+        /// </summary>
+        /// <param name="id">ID на доставчика.</param>
         public void DeleteSupplier(int id)
         {
             using (var _context = new InventoryManagementContext())
@@ -85,6 +114,11 @@ namespace InventoryManagement.Services
                 _context.SaveChanges();
             }
         }
+
+        /// <summary>
+        /// Връща списък с всички доставчици.
+        /// </summary>
+        /// <returns>Списък от обекти Supplier.</returns>
         public List<Supplier> GetAllSuppliers()
         {
             using (var _context = new InventoryManagementContext())

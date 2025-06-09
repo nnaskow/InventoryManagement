@@ -6,9 +6,15 @@ using Microsoft.EntityFrameworkCore;
 
 namespace InventoryManagement.Services
 {
+    /// <summary>
+    /// Услуга за управление на категории в системата за управление на инвентара.
+    /// </summary>
     public class CategoryService
     {
-        
+        /// <summary>
+        /// Добавя нова категория.
+        /// </summary>
+        /// <param name="name">Името на новата категория.</param>
         public void AddCategory(string name)
         {
             var category = new Category
@@ -22,6 +28,10 @@ namespace InventoryManagement.Services
             }
         }
 
+        /// <summary>
+        /// Връща списък с всички категории.
+        /// </summary>
+        /// <returns>Списък с обекти от тип Category.</returns>
         public List<Category> GetAllCategories()
         {
             using (var _context = new InventoryManagementContext())
@@ -30,6 +40,11 @@ namespace InventoryManagement.Services
             }
         }
 
+        /// <summary>
+        /// Връща категория по зададено ID.
+        /// </summary>
+        /// <param name="categoryId">Идентификатор на категорията.</param>
+        /// <returns>Категорията или null, ако не съществува.</returns>
         public Category GetCategoryById(int categoryId)
         {
             using (var _context = new InventoryManagementContext())
@@ -38,6 +53,11 @@ namespace InventoryManagement.Services
             }
         }
 
+        /// <summary>
+        /// Редактира името на съществуваща категория.
+        /// </summary>
+        /// <param name="categoryId">Идентификатор на категорията.</param>
+        /// <param name="newName">Новото име на категорията.</param>
         public void EditCategory(int categoryId, string newName)
         {
             using (var _context = new InventoryManagementContext())
@@ -52,6 +72,10 @@ namespace InventoryManagement.Services
             }
         }
 
+        /// <summary>
+        /// Изтрива категория по зададено ID.
+        /// </summary>
+        /// <param name="categoryId">Идентификатор на категорията.</param>
         public void DeleteCategory(int categoryId)
         {
             using (var _context = new InventoryManagementContext())
@@ -66,6 +90,10 @@ namespace InventoryManagement.Services
             }
         }
 
+        /// <summary>
+        /// Връща списък с всички идентификатори на категории.
+        /// </summary>
+        /// <returns>Списък с цели числа, представляващи ID на категориите.</returns>
         public List<int> GetAllCategoryIds()
         {
             using (var _context = new InventoryManagementContext())

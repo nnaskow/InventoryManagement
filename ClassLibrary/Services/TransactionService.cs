@@ -6,9 +6,18 @@ using Microsoft.EntityFrameworkCore;
 
 namespace InventoryManagement.Services
 {
+    /// <summary>
+    /// Услуга за управление на транзакции в инвентарната система.
+    /// </summary>
     public class TransactionService
     {
-
+        /// <summary>
+        /// Добавя транзакция (входна или изходна) за даден продукт и актуализира наличността.
+        /// </summary>
+        /// <param name="productId">ID на продукта.</param>
+        /// <param name="transactionType">Тип на транзакцията ("IN" или "OUT").</param>
+        /// <param name="quantity">Количество.</param>
+        /// <param name="transactionDate">Дата на транзакцията.</param>
         public void AddTransaction(int productId, string transactionType, int quantity, DateOnly transactionDate)
         {
             using (var _context = new InventoryManagementContext())
@@ -43,6 +52,14 @@ namespace InventoryManagement.Services
                 _context.SaveChanges();
             }
         }
+
+        /// <summary>
+        /// Добавя само входяща ("IN") транзакция без да актуализира количеството. (Полезно за начални данни.)
+        /// </summary>
+        /// <param name="productId">ID на продукта.</param>
+        /// <param name="transactionType">Тип на транзакцията ("IN").</param>
+        /// <param name="quantity">Количество.</param>
+        /// <param name="transactionDate">Дата на транзакцията.</param>
         public void AddTransactionForINEntriesOnly(int productId, string transactionType, int quantity, DateOnly transactionDate)
         {
             using (var _context = new InventoryManagementContext())
@@ -67,16 +84,25 @@ namespace InventoryManagement.Services
             }
         }
 
+        /// <summary>
+        /// Връща списък с всички транзакции, включително данни за продукта.
+        /// </summary>
+        /// <returns>Списък от транзакции.</returns>
         public List<Transaction> GetAllTransactions()
         {
             using (var _context = new InventoryManagementContext())
             {
                 return _context.Transactions
-                .Include(t => t.Product)
-                .ToList();
+                    .Include(t => t.Product)
+                    .ToList();
             }
         }
 
+        /// <summary>
+        /// Връща транзакция по зададено ID.
+        /// </summary>
+        /// <param name="transactionId">ID на транзакцията.</param>
+        /// <returns>Обект Transaction или null, ако не е намерен.</returns>
         public Transaction GetTransactionById(int transactionId)
         {
             using (var _context = new InventoryManagementContext())
@@ -84,6 +110,12 @@ namespace InventoryManagement.Services
                 return _context.Transactions.FirstOrDefault(t => t.TransactionId == transactionId);
             }
         }
+
+        /// <summary>
+        /// Връща последните N транзакции, подредени по дата.
+        /// </summary>
+        /// <param name="count">Брой транзакции за връщане.</param>
+        /// <returns>Списък от последни транзакции.</returns>
         public List<Transaction> GetLastTransactions(int count)
         {
             using (var context = new InventoryManagementContext())
@@ -95,6 +127,11 @@ namespace InventoryManagement.Services
                     .ToList();
             }
         }
+
+        /// <summary>
+        /// Изтрива транзакция и коригира количеството на продукта.
+        /// </summary>
+        /// <param name="transactionId">ID на транзакцията.</param>
         public void RemoveTransaction(int transactionId)
         {
             using (var _context = new InventoryManagementContext())
@@ -124,6 +161,5 @@ namespace InventoryManagement.Services
                 _context.SaveChanges();
             }
         }
-
     }
 }

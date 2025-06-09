@@ -729,11 +729,6 @@ namespace FormsApplication
 
         }
 
-        private void tabPage5_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void CatIDEditCat_SelectedIndexChanged(object sender, EventArgs e)
         {
             int num = int.Parse(CatIDEditCat.Text);
