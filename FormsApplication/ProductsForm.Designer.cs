@@ -41,7 +41,7 @@
             productsList.ForeColor = SystemColors.Control;
             productsList.Location = new Point(12, 42);
             productsList.Name = "productsList";
-            productsList.Size = new Size(138, 21);
+            productsList.Size = new Size(173, 28);
             productsList.TabIndex = 0;
             productsList.Text = "Лист с продукти";
             // 
@@ -60,11 +60,11 @@
             // 
             // ProductsForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 19F);
+            AutoScaleDimensions = new SizeF(10F, 23F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.WhiteSmoke;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
-            ClientSize = new Size(402, 593);
+            ClientSize = new Size(400, 585);
             Controls.Add(productsListTxtBox);
             Controls.Add(productsList);
             Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 204);
